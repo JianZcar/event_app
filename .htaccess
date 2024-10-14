@@ -1,0 +1,11 @@
+RewriteEngine On
+
+RewriteBase /
+
+# Login Page
+RewriteRule ^login$ app/login/login.php [L]
+
+# Register Page
+RewriteRule ^register$ app/login/register.php [L]
+
+
