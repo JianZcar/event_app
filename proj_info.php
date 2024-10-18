@@ -9,19 +9,24 @@ $proj_description = "A simple event management application.";
 // 2. DATABASE CONNECTION
 
 // Use MySQL Connection
-$db_host = "localhost";         // DB Hostname
-$db_port = "3306";              // DB Port
-$db_user = "root";              // DB Username
-$db_pass = "";                  // DB Password
-$db_name = "event_app";         // DB Name
+$db_toggle = TRUE;
+
+if ($db_toggle) {
+  $db_host = "localhost";         // DB Hostname
+  $db_port = "3306";              // DB Port
+  $db_user = "root";              // DB Username
+  $db_pass = "Day15@!";                  // DB Password
+  $db_name = "event_app";         // DB Name
 
 
-$db_conn = new mysqli($db_host, $db_user, $db_pass, $db_name, $db_port);
+  $db_conn = new mysqli($db_host, $db_user, $db_pass, $db_name, $db_port);
 
-// 2.1 Testing connection
-if ($db_conn->connect_error) {
-  die("Connection failed: " . $db_conn->connect_error -> connect_error);
+  // 2.1 Testing connection
+  if ($db_conn->connect_error) {
+    die("Connection failed: " . $db_conn->connect_error -> connect_error);
+  }
 }
+
 
 
 // 3. PROJECT INFORMATION :: DATE

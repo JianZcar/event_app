@@ -1,6 +1,6 @@
 CREATE TABLE IF NOT EXISTS user_roles(
   id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(30)
+  role_name VARCHAR(30)
 );
 
 INSERT INTO user_roles(name) VALUES ('Administrator');
