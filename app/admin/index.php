@@ -37,20 +37,18 @@
   <link href="../global_assets/css/output.css" rel="stylesheet">
   <link href="./../global_assets/css/global_footer.css" rel="stylesheet">
   <link href="./../global_assets/css/panel.css" rel="stylesheet">
+  <link href="./../global_assets/css/sidebar.css" rel="stylesheet">
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body class="mainstream-panel">
   
-<div class="sidebar-content" id="sidebar-content">
-  <!-- func like home inbox calendar -->
-   
-  <?php include './../global_assets/php/sidebar.php';?>
+<div class="bg-blue-500 sidebar-content" id="sidebar-content">
+  <?php include_once './../global_assets/php/sidebar.php';?>
 </div>
 
 <div class="main-content">
-
   <header class="bg-blue-500 text-white p-4 p-base-nav">
     <div>
       <!-- call the function toggleSidebar() -->
@@ -124,7 +122,7 @@
       </table>
     </div>
   </main>
-  <footer class="bg-gray-800 text-white p-4 p-footer">
+  <footer class="bg-gray-800 text-white p-4 p-footer" id="p-footer">
     <p>All rights reserved <?php echo $proj_current_year?></p>
   </footer>
   <script src="./../global_assets/js/sidebar.js"></script>

@@ -38,13 +38,16 @@
   <link href="../global_assets/css/output.css" rel="stylesheet">
   <link href="./../global_assets/css/global_footer.css" rel="stylesheet">
   <link href="./../global_assets/css/panel.css" rel="stylesheet">
+  <link href="./../global_assets/css/sidebar.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
 
 <body class="mainstream-panel">
-<div class="sidebar-content" id="sidebar-content">
-  123abc
+
+<div class="bg-blue-500  sidebar-content" id="sidebar-content">
+  <?php include_once './../global_assets/php/sidebar.php';?>
 </div>
+
 <div class="main-content">
   <header class="bg-blue-500 text-white p-4 p-base-nav">
     <div>
@@ -55,6 +58,7 @@
     <div>
       <h1 class="text-2xl"><?php echo $page_full_name?></h1>
     </div>
+    <form action=""><input type="email" name="email" id="email"><button type="submit"></button></form>
   </header>
 
   <main class="p-4 p-body">

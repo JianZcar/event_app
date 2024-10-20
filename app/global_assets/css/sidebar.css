@@ -16,40 +16,77 @@
     }
   }
   .sidebar-content {
-    display: none;
-    width: 0;
-    height: 100vh;
     overflow: hidden;
-    position: fixed;
-    background-color: #333;
+    display: none;
+    height: 100vh;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    height: 100vh;
     color: white;
-    visibility: hidden;
-    opacity: 0;
     transition: visibility 0.5s, opacity 0.5s;
+    box-shadow: rgba(0, 0, 0, 0.5);
   }
   .sidebar-content.open {
-    visibility: visible;
+    display: flex;
     animation: sidebarAnimOpen 0.5s forwards;
   }
   .sidebar-content.close {
-    visibility: none;
     animation: sidebarAnimClose 0.5s forwards;
   }
-  .menu-sidebar {
-    min-width: 100%;
-    min-height: 100vh;
-    height: auto;
+  .sidebar-top {
+    height: 50px;
+    display: flex;
+    margin: 2rem;
+    font-size: 20px;
+  }
+  .sidebar-top * {
+    left: 0;
+    right: 0;
+  }
+  .sidebar-profile {
+    display: flex;
+    flex-direction: row;
     position: relative;
-    display: fixed;
+    margin: 10px;
+    min-height: 100px;
+    color: #eee;
+    border: 1px solid var(--p-border-color);
+    border-radius: var(--p-border-rad);
+    padding: var(--p-padding);
+    background-color: var(--p-panel-primary);
+  }
+  .sidebar-profile.sidebar-profile-user {
     display: flex;
     flex-direction: column;
   }
-  .sidebar-profile {
-    min-width: 100%;
-    min-height: 150px;
-    color: #887766;
+  .sidebar-profile img {
+    width: 100px;
+    border-radius: 100%;
+    border: 1px solid #eee;
   }
-  .sidebar-menu-list {
-    min-width: 100%;
+  .sidebar-menu {
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  .sidebar-menu li {
+    margin: 2px;
+    padding: 10px;
+    border-top: 2px solid #eee;
+    border-right: 2px solid #eee;
+    border-left: 2px solid #eee;
+    border-bottom: 2px solid var(--p-border-color);
+    border-radius: var(--p-border-rad);
+    transition: 0.3s ease;
+    font-size: 1.5rem;
+    cursor: pointer;
+  }
+  .sidebar-menu li:hover {
+    background-color: var(--p-hover);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   }
 }/*# sourceMappingURL=sidebar.css.map */
