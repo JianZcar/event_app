@@ -1,0 +1,55 @@
+@media screen and (max-width: 768px) {
+  @keyframes sidebarAnimOpen {
+    from {
+      min-width: 0;
+    }
+    to {
+      min-width: 80vw;
+    }
+  }
+  @keyframes sidebarAnimClose {
+    from {
+      min-width: 80vw;
+    }
+    to {
+      min-width: 0;
+    }
+  }
+  .sidebar-content {
+    display: none;
+    width: 0;
+    height: 100vh;
+    overflow: hidden;
+    position: fixed;
+    background-color: #333;
+    color: white;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0.5s, opacity 0.5s;
+  }
+  .sidebar-content.open {
+    visibility: visible;
+    animation: sidebarAnimOpen 0.5s forwards;
+  }
+  .sidebar-content.close {
+    visibility: none;
+    animation: sidebarAnimClose 0.5s forwards;
+  }
+  .menu-sidebar {
+    min-width: 100%;
+    min-height: 100vh;
+    height: auto;
+    position: relative;
+    display: fixed;
+    display: flex;
+    flex-direction: column;
+  }
+  .sidebar-profile {
+    min-width: 100%;
+    min-height: 150px;
+    color: #887766;
+  }
+  .sidebar-menu-list {
+    min-width: 100%;
+  }
+}/*# sourceMappingURL=sidebar.css.map */

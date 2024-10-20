@@ -40,25 +40,16 @@
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
-
-<body class="mainstream-panel">
-  
-<div class="sidebar-content" id="sidebar-content">
-  <!-- func like home inbox calendar -->
-   
-  <?php include './../global_assets/php/sidebar.php';?>
+<body>
+<div class="sidebar">
 </div>
-
 <div class="main-content">
-
-  <header class="bg-blue-500 text-white p-4 p-base-nav">
+  <header class="bg-blue-500 text-white p-4 base-navigator">
     <div>
-      <!-- call the function toggleSidebar() -->
-      <a class="btn-menu-list" id="btn-menu-list" onclick="toggleSidebar()"><i class='bx bx-menu'></i></a>
-      <!-- <a class="btn-menu-list" id="btn-menu-list"><i class='bx bx-list-ul'>Menu</i></a> -->
+    <a class="btn-menu-list"><i class='bx bx-list-ul'>Menu</i></a>
     </div>
     <div>
-      <h1 class="text-2xl"><?php echo $page_full_name?></h1>
+    <h1 class="text-2xl"><?php echo $page_full_name?></h1>
     </div>
   </header>
 
@@ -86,12 +77,13 @@
       </form>
     </div>
 
+
     <div class="panel-base">
       <h3>Manage Users</h3>
       <div class="p-search">
-        <input type="text" name="search" id="search" placeholder="Search">
-        <button type="submit">Search</button>
-      </div>
+          <input type="text" name="search" id="search" placeholder="Search">
+          <button type="submit">Search</button>
+        </div>
       <table class="p-table">
         <thead>
           <tr>
@@ -101,6 +93,7 @@
             <th>Actions</th>
           </tr>
         </thead>
+
         <tbody>
           <?php
             // print all users
@@ -122,12 +115,32 @@
           ?>
         </tbody>
       </table>
+      <!-- <table class="p-table">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+
+        <tbody>
+          <tr>
+            <td>john_doe</td>
+            <td>None</td>
+            <td>Admin</td>
+            <td>
+              <button>Edit</button>
+              <button>Delete</button>
+            </td>
+              
+      </table> -->
     </div>
   </main>
   <footer class="bg-gray-800 text-white p-4 p-footer">
     <p>All rights reserved <?php echo $proj_current_year?></p>
   </footer>
-  <script src="./../global_assets/js/sidebar.js"></script>
 </div>
 </body>
 </html>

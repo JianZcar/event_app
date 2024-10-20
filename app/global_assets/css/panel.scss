@@ -1,7 +1,28 @@
 @import url('./global_variable.css');
 
+// Navbar sidebar
+.p-base-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+  transition: all 0.5s ease-in-out;
+  color: var(--p-btn-light);
+}
+
 // Mobile View
 @media screen and (max-width: 768px) {
+  // Body section
+  .mainstream-panel {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    overflow-x: hidden;
+  }
+
   // Textbox
   .tbox-preset-1 {
     width: 100%;
@@ -361,27 +382,7 @@
       margin: 0;
       font-size: 14px;
       color: var(--p-text-secondary);
-    }
-
-    // Navbar
-    .base-nav {
-      display: flex;
-      flex-direction: row;
-      // justify-content: space-between;
-      position: relative;
-      width: 100%;
-      margin-bottom: 10px;
-      color: var(--p-btn-light);
-
-      * {
-        // margin: 5px;
-      }
-      button {
-        width: 100%;
-        border: 2px solid var(--p-border-color);
-        border-radius: var(--p-border-rad);
-        padding: 10px;
-      }
-    }
   }
 
+    // Navbar
+}

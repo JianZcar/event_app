@@ -26,6 +26,9 @@
 
     header("Location: index.php");
   }
+
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -37,63 +40,70 @@
   <link href="./../global_assets/css/panel.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
-<body>
 
-<header class="bg-blue-500 text-white p-4">
-  <h1 class="text-2xl"><?php echo $page_full_name?></h1>
-</header>
+<body class="mainstream-panel">
+<div class="sidebar-content" id="sidebar-content">
+  123abc
+</div>
+<div class="main-content">
+  <header class="bg-blue-500 text-white p-4 p-base-nav">
+    <div>
+      <!-- call the function toggleSidebar() -->
+      <a class="btn-menu-list" id="btn-menu-list" onclick="toggleSidebar()"><i class='bx bx-menu'></i></a>
+      <!-- <a class="btn-menu-list" id="btn-menu-list"><i class='bx bx-list-ul'>Menu</i></a> -->
+    </div>
+    <div>
+      <h1 class="text-2xl"><?php echo $page_full_name?></h1>
+    </div>
+  </header>
 
-<main class="p-4 p-body">
-  <!-- <p>Main content goes here.</p> -->
-  <div class="panel-base p-title">
-    <h1>Add User</h1>
-  </div>
+  <main class="p-4 p-body">
+    <!-- <p>Main content goes here.</p> -->
+    <div class="panel-base p-title">
+      <h1>Add User</h1>
+    </div>
 
-  <div>
-    <?php
-      if (isset($msg_account_announce)) {
-        echo "<div class='panel-base p-announcement-success'>$msg_account_announce</div>";
-      }
-    ?>
-  </div>
-  <div class="panel-base">
-    <form class="p-form-user" method="post">
-      <div class="frmInput">
-        <!-- <label for="username">Username</label> -->
-        <input type="text" name="username" id="username" class="tbox-preset-1" placeholder="Username" required minlength="3">
-      </div>
-      <div class="frmInput">
-        <!-- <label for="password">Password</label> -->
-        <input type="password" name="password" id="password" class="tbox-preset-1" placeholder="Password" required minlength="8">
-      </div>
-      <div class="frmInput">
-      Active Account <input type="checkbox" name="is_active" id="is_active" value="1">
-      </div>
-      <div class="frmInput">
-        <select name="role" id="role">
-          <option value="1">Admin</option>
-          <option value="2">User</option>
-        </select>
-      </div>
-      <div class="frmInput">
-        <button type="submit" href="" class="btn-accept-1">Add User</button>
-      </div>
-      <div class="frmInput">
-        <button type="submit" onclick="window.location.href='index.php';" class="btn-common-1">Cancel</button>
-      </div>
-      <!-- <button type="submit" class="btn-post-1">Add User</button> -->
-    </form>
-  </div>
+    <div>
+      <?php
+        if (isset($msg_account_announce)) {
+          echo "<div class='panel-base p-announcement-success'>$msg_account_announce</div>";
+        }
+      ?>
+    </div>
+    <div class="panel-base">
+      <form class="p-form-user" method="post">
+        <div class="frmInput">
+          <!-- <label for="username">Username</label> -->
+          <input type="text" name="username" id="username" class="tbox-preset-1" placeholder="Username" required minlength="3">
+        </div>
+        <div class="frmInput">
+          <!-- <label for="password">Password</label> -->
+          <input type="password" name="password" id="password" class="tbox-preset-1" placeholder="Password" required minlength="8">
+        </div>
+        <div class="frmInput">
+        Active Account <input type="checkbox" name="is_active" id="is_active" value="1">
+        </div>
+        <div class="frmInput">
+          <select name="role" id="role">
+            <option value="1">Admin</option>
+            <option value="2">User</option>
+          </select>
+        </div>
+        <div class="frmInput">
+          <button type="submit" href="" class="btn-accept-1">Add User</button>
+        </div>
+        <div class="frmInput">
+          <button type="submit" onclick="window.location.href='index.php';" class="btn-common-1">Cancel</button>
+        </div>
+        <!-- <button type="submit" class="btn-post-1">Add User</button> -->
+      </form>
+    </div>
+  </main>
+  <footer class="bg-gray-800 text-white p-4 p-footer">
+    <p>All rights reserved <?php echo $proj_current_year?></p>
+  </footer>
+  <script src="./../global_assets/js/sidebar.js"></script>
+</div>
 
-
-  <!-- <div class="panel-base">
-    <form>
-
-    </form>
-  </div> -->
-</main>
-<footer class="bg-gray-800 text-white p-4 p-footer">
-  <p>All rights reserved <?php echo $proj_current_year?></p>
-</footer>
 </body>
 </html>

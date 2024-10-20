@@ -1,5 +1,23 @@
 @import url("./global_variable.css");
+.p-base-nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  width: 100%;
+  margin-bottom: 10px;
+  transition: all 0.5s ease-in-out;
+  color: var(--p-btn-light);
+}
+
 @media screen and (max-width: 768px) {
+  .mainstream-panel {
+    display: flex;
+    flex-direction: row;
+    position: fixed;
+    overflow-x: hidden;
+  }
   .tbox-preset-1 {
     width: 100%;
     border: 2px solid var(--p-border-color);
@@ -284,18 +302,4 @@
   margin: 0;
   font-size: 14px;
   color: var(--p-text-secondary);
-}
-.p-announcement-success .base-nav {
-  display: flex;
-  flex-direction: row;
-  position: relative;
-  width: 100%;
-  margin-bottom: 10px;
-  color: var(--p-btn-light);
-}
-.p-announcement-success .base-nav button {
-  width: 100%;
-  border: 2px solid var(--p-border-color);
-  border-radius: var(--p-border-rad);
-  padding: 10px;
 }/*# sourceMappingURL=panel.css.map */
