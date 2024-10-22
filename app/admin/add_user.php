@@ -94,10 +94,10 @@
           </select>
         </div>
         <div class="frmInput">
-          <button type="submit" href="" class="btn-accept-1">Add User</button>
+          <button type="submit" href="" class="btn-common btn-accept-1">Add User</button>
         </div>
         <div class="frmInput">
-          <button type="submit" onclick="window.location.href='index.php';" class="btn-common-1">Cancel</button>
+          <button type="submit" onclick="window.location.href='index.php';" class="btn-common">Cancel</button>
         </div>
         <!-- <button type="submit" class="btn-post-1">Add User</button> -->
       </form>

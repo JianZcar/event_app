@@ -254,6 +254,211 @@
   }
 }
 
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+// DESKTOP VIEW
+
+@media screen and (min-width: 768px) {
+  // Sidebar action
+
+  // Navigator for sidebar
+  .p-base-nav {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: flex-start;
+    height: 60px;
+  }
+
+  // Whole body
+  .mainstream-panel {
+    min-height: 100vh;
+    display: inline-flex;
+    flex-direction: row;
+    width: 100vw;
+  }
+
+  // Main content inside of body
+  .main-content {
+    min-height: 100vh;
+    width: 100vw;
+  }
+
+  // Content inner of main content
+  .p-body {
+    min-height: 100vh;
+  }
+
+  // Base panel
+  .panel-base {
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid var(--p-border-color);
+    border-radius: var(--p-border-rad);
+    margin: 10px 0;
+    padding: 10px;
+  }
+
+  // Panel Title
+  .p-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  // Message panel: When action is done
+  .p-poster {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+
+  // Search panel
+  .p-search {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+
+    input {
+      flex: 1;
+      padding: 5px;
+      border: 1px solid var(--p-border-color);
+      border-radius: var(--p-border-rad);
+      width: 100%;
+    }
+
+    button {
+      padding: 5px;
+      border: 1px solid var(--p-border-color);
+      border-radius: var(--p-border-rad);
+      background-color: var(--p-btn-primary);
+      color: var(--p-btn-light);
+      margin-top: 5px;
+    }
+  }
+
+  .p-table {
+    display: flex;
+    flex-direction: column;
+    // border: 1px solid var(--p-border-color);
+    // border-radius: var(--p-border-rad);
+    margin-top: 10px;
+
+    // Table header
+    thead {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      // justify-content: space-between;
+      background-color: var(--table-primary-light);
+      color: var(--p-btn-light);
+      font-weight: bold;
+      // border-bottom: 1px solid var(--table-primary-light);
+    }
+
+    th {
+      width: 100%;
+      padding: 10px 0;
+      flex: 1;
+    }
+
+    // Table body
+    tbody {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    tr {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      // border-bottom: 1px solid var(--p-border-color);
+    }
+
+    td {
+      display: inline-flex;
+      flex-direction: row;
+      justify-content: space-between;
+      width: 100%;
+      padding: 10px;
+      flex: 1;
+    }
+
+    button {
+      padding: 5px;
+      border: 1px solid var(--p-border-color);
+      border-radius: var(--p-border-rad);
+      background-color: var(--p-btn-primary);
+      color: var(--p-btn-light);
+      margin-top: 5px;
+      // min-width: 15px;
+      width: 100%;
+    }
+    .table-image {
+      margin-right: 10px;
+      max-width: 70px;
+      border: 1px solid var(--p-border-color);
+      border-radius: 100%;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+  }
+
+  .p-form-user {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    position: relative;
+    width: 100%;
+    // border: 10px solid var(--p-border-color);
+  
+    .frmInput {
+      display: inline-flex;
+      padding: 5px 0;
+      width: 100%;
+      flex-direction: row;
+      // justify-content: space-between;
+    }
+    input[type="checkbox"] {
+      float: right;
+      right: 0;
+      padding: 5px;
+      border: 1px solid var(--p-border-color);
+      border-radius: var(--p-border-rad);
+      width: 10px;
+    }
+
+    input {
+      flex: 1;
+      padding: 5px;
+      border: 1px solid var(--p-border-color);
+      border-radius: var(--p-border-rad);
+      width: 100%;
+    }
+
+    select {
+      flex: 1;
+      padding: 5px;
+      border: 1px solid var(--p-border-color);
+      border-radius: var(--p-border-rad);
+      width: 100%;
+    }
+      
+    label {
+      // flex: 1;
+      // padding: 5px;
+      // border: 1px solid var(--p-border-color);
+      // border-radius: var(--p-border-rad);
+      width: 100%;
+    }
+  }
+}
+
+// !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
 // Buttons
 .btn-common {
   padding: 5px;
@@ -265,7 +470,8 @@
   margin-top: 5px;
 }
 
-// Buttons
+
+// Buttons themes
 .btn-accept-1 {
   background-color: var(--p-btn-success);
   color: var(--p-btn-light);

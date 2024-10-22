@@ -198,6 +198,158 @@
     width: 100%;
   }
 }
+@media screen and (min-width: 768px) {
+  .p-base-nav {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: flex-start;
+    height: 60px;
+  }
+  .mainstream-panel {
+    min-height: 100vh;
+    display: inline-flex;
+    flex-direction: row;
+    width: 100vw;
+  }
+  .main-content {
+    min-height: 100vh;
+    width: 100vw;
+  }
+  .p-body {
+    min-height: 100vh;
+  }
+  .panel-base {
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid var(--p-border-color);
+    border-radius: var(--p-border-rad);
+    margin: 10px 0;
+    padding: 10px;
+  }
+  .p-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .p-poster {
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+  }
+  .p-search {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+  }
+  .p-search input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid var(--p-border-color);
+    border-radius: var(--p-border-rad);
+    width: 100%;
+  }
+  .p-search button {
+    padding: 5px;
+    border: 1px solid var(--p-border-color);
+    border-radius: var(--p-border-rad);
+    background-color: var(--p-btn-primary);
+    color: var(--p-btn-light);
+    margin-top: 5px;
+  }
+  .p-table {
+    display: flex;
+    flex-direction: column;
+    margin-top: 10px;
+  }
+  .p-table thead {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    background-color: var(--table-primary-light);
+    color: var(--p-btn-light);
+    font-weight: bold;
+  }
+  .p-table th {
+    width: 100%;
+    padding: 10px 0;
+    flex: 1;
+  }
+  .p-table tbody {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+  .p-table tr {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+  }
+  .p-table td {
+    display: inline-flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    padding: 10px;
+    flex: 1;
+  }
+  .p-table button {
+    padding: 5px;
+    border: 1px solid var(--p-border-color);
+    border-radius: var(--p-border-rad);
+    background-color: var(--p-btn-primary);
+    color: var(--p-btn-light);
+    margin-top: 5px;
+    width: 100%;
+  }
+  .p-table .table-image {
+    margin-right: 10px;
+    max-width: 70px;
+    border: 1px solid var(--p-border-color);
+    border-radius: 100%;
+  }
+  .p-table .bold {
+    font-weight: bold;
+  }
+  .p-form-user {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    position: relative;
+    width: 100%;
+  }
+  .p-form-user .frmInput {
+    display: inline-flex;
+    padding: 5px 0;
+    width: 100%;
+    flex-direction: row;
+  }
+  .p-form-user input[type=checkbox] {
+    float: right;
+    right: 0;
+    padding: 5px;
+    border: 1px solid var(--p-border-color);
+    border-radius: var(--p-border-rad);
+    width: 10px;
+  }
+  .p-form-user input {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid var(--p-border-color);
+    border-radius: var(--p-border-rad);
+    width: 100%;
+  }
+  .p-form-user select {
+    flex: 1;
+    padding: 5px;
+    border: 1px solid var(--p-border-color);
+    border-radius: var(--p-border-rad);
+    width: 100%;
+  }
+  .p-form-user label {
+    width: 100%;
+  }
+}
 .btn-common {
   padding: 5px;
   width: 100%;
