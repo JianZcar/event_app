@@ -16,7 +16,9 @@
       users.id,
       users.username, 
       users.is_active, 
-      user_roles.role_name 
+      user_roles.role_name,
+      user_roles.color,
+      user_roles.bg_color
   FROM 
       users 
   INNER JOIN 
@@ -38,8 +40,8 @@
   <link href="./../global_assets/css/global_footer.css" rel="stylesheet">
   <link href="./../global_assets/css/panel.css" rel="stylesheet">
   <link href="./../global_assets/css/sidebar.css" rel="stylesheet">
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body class="mainstream-panel">
@@ -86,6 +88,9 @@
 
     <div class="panel-base">
       <h3>Manage Users</h3>
+      <!-- add button <A> -->
+      <!-- <a href="" class="btn-add">Add</a> -->
+      <button onclick="window.location.href='add_user.php';">Add User</button>
       <div class="p-search">
         <input type="text" name="search" id="search" placeholder="Search">
         <button type="submit">Search</button>
@@ -93,9 +98,7 @@
       <table class="p-table">
         <thead>
           <tr>
-            <th>Username</th>
-            <th>Active</th>
-            <th>Role</th>
+            <th colspan="2">Username</th>
             <th>Actions</th>
           </tr>
         </thead>
@@ -104,15 +107,22 @@
             // print all users
             if ($result_users->num_rows > 0) {
               while ($row = $result_users->fetch_assoc()) {
+                $username = $row['username'];
+                $is_active = ($row['is_active'] == 1 ? "active" : "inactive");
+                $role_name = $row['role_name'];
+                $text_color = $row['color'];
+                $bg_color = $row['bg_color'];
                 echo "<tr>";
-                echo "<td>" . $row['username'] . "</td>";
-                echo "<td>" . ($row['is_active'] == 1 ? 'Yes' : 'No') . "</td>";
-                echo "<td>" . $row['role_name'] . "</td>";
                 echo "<td>";
-                echo "<button onclick=\"window.location.href='edit_user.php?id=" . $row['id'] . "';\">Edit</button>";
-                echo "<button onclick=\"window.location.href='delete_user.php?id=" . $row['id'] . "';\">Delete</button>";
+                echo "<img class=\"table-image\" src=\"../global_assets/img/default_user.png\">";
+                echo "<div class=\"user-info\">";
+                echo "<p class=\"bold\">$username</p>";
+                echo "<p class=\"role-type\">$role_name</p>";
+                echo "</div>";
                 echo "</td>";
-                echo "</tr>";
+                echo "<td>";
+                echo "<button class=\"btn-$is_active\">Edit</button>";
+                echo "<tr>";
               }
             } else {
               echo "<tr><td colspan='4'>No users found.</td></tr>";

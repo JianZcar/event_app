@@ -54,4 +54,10 @@
 
   /* Font */
   --btn-bold : bold;
+
+
+  /* Table color */
+  --table-primary: #007bff;
+  --table-primary-light: #2d92ff;
+  --table-primary-dark: #0056b3;
 }

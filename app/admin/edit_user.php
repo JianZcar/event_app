@@ -80,12 +80,24 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <link href="../global_assets/css/output.css" rel="stylesheet">
     <link href="./../global_assets/css/global_footer.css" rel="stylesheet">
     <link href="./../global_assets/css/panel.css" rel="stylesheet">
+    <link href="./../global_assets/css/sidebar.css" rel="stylesheet">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
 </head>
-<body>
+<body class="mainstream-panel">
 
+<div class="bg-blue-500  sidebar-content" id="sidebar-content">
+    <?php include_once './../global_assets/php/sidebar.php';?>
+</div>
+
+<div class="main-content">
 <header class="bg-blue-500 text-white p-4">
-    <h1 class="text-2xl"><?php echo $page_full_name ?></h1>
+    <div>
+        <a class="btn-menu-list" id="btn-menu-list" onclick="toggleSidebar()"><i class='bx bx-menu'></i></a>
+    </div>
+    <div>
+        <h1 class="text-2xl"><?php echo $page_full_name ?></h1>
+    </div>
 </header>
 
 <main class="p-4 p-body">
@@ -132,5 +144,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <footer class="bg-gray-800 text-white p-4 p-footer">
     <p>All rights reserved <?php echo $proj_current_year ?></p>
 </footer>
+<script src="./../global_assets/js/sidebar.js"></script>
+</div>
 </body>
 </html>

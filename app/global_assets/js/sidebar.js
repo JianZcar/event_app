@@ -6,7 +6,8 @@ function executeSidebar() {
 }
 function toggleSidebar() {
   var sidebar = document.getElementById('sidebar-content');
-  
+  var main_content = document.getquerySelector('main-conent');
+
   // PRevent horizaontal swipe when the sidebar is open
   function preventHorizontalSwipe(e) {
     if (e.deltaX !== 0) {
@@ -19,6 +20,7 @@ function toggleSidebar() {
     // If the sidebar is already open, restrict the swipe either left to right or right to left until the sidebar is closed
     sidebar.classList.remove('open');
     window.removeEventListener('wheel', preventHorizontalSwipe, { passive: false });
+    main_content.style.overflow = 'auto';
     return;
   } else {
     sidebar.classList.add('open');

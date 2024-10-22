@@ -15,381 +15,161 @@
 }
 
 // Mobile View
+
 @media screen and (max-width: 768px) {
-  // Body section
+  // Navigator for sidebar
+  .p-base-nav {
+    display: inline-flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  // Whole body
   .mainstream-panel {
+    min-height: 100vh;
+  }
+
+  // Main content inside of body
+  .main-content {
+    min-height: 100vh;
+  }
+
+  // Content inner of main content
+  .p-body {
+    min-height: 100vh;
+  }
+
+  // Base panel
+  .panel-base {
+    display: inline-flex;
+    flex-direction: column;
+    width: 100%;
+    border: 1px solid var(--p-border-color);
+    border-radius: var(--p-border-rad);
+    margin: 10px 0;
+    padding: 10px;
+  }
+
+  // Panel Title
+  .p-title {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+
+  // Message panel: When action is done
+  .p-poster {
     display: flex;
     flex-direction: row;
-    position: fixed;
-    position: relative; 
-  }
-
-  .main-content {
-    width: 100vw;
-    overflow: hidden;
-    position: relative;
-  }
-
-  // Textbox
-  .tbox-preset-1 {
-    width: 100%;
-    border: 2px solid var(--p-border-color);
-    border-radius: var(--p-border-rad);
-    padding: 10px;
-  }
-
-  // User form's input
-  .frmInput {
-    display: inline-flex;
-    flex-direction: row;
-    // space between
-    justify-content: space-between;
-    position: relative;
-    width: 90%;
-    margin: 10px 0;
-
-    input[type="checkbox"] {
-      width: 30px;
-      height: 30px;
-      // border-radius: var(--p-border-rad);
-    }
-
-    select {
-      width: 100%;
-      border: 2px solid var(--p-border-color);
-      border-radius: var(--p-border-rad);
-      padding: 10px;
-    }
-  }
-
-  // Button presets
-
-  // Common 1
-  .btn-common-1 {
-    width: 100%;
-    border: 2px solid var(--p-border-color);
-    border-radius: var(--p-border-rad);
-    padding: 10px;
-
-    // Hover
-    &:hover, &:active, &:focus {
-      background-color: var(--p-hover);
-      color: var(--btn-light)
-    }
-  }
-
-  // Accept button
-  .btn-accept-1 {
-    width: 100%;
-    border: 2px solid var(--p-btn-success);
-    border-radius: var(--p-border-rad);
-    padding: 10px;
-    background-color: var(--p-accept);
-    color: var(--p-btn-success);
-    font-weight: var(--btn-bold);
-
-    &:hover, &:active, &:focus {
-      background-color: var(--p-btn-success);
-      color: var(--btn-light);
-    }
-  }
-
-  // Button Danger
-  .btn-danger-1 {
-    width: 100%;
-    border: 2px solid var(--p-btn-danger);
-    border-radius: var(--p-border-rad);
-    padding: 10px;
-    background-color: var(--p-danger);
-    color: var(--p-btn-danger);
-    font-weight: var(--btn-bold);
-
-    &:hover, &:active, &:focus {
-      background-color: var(--p-btn-danger);
-      color: var(--btn-light);
-    }
-  }
-
-  // a: button : Menu
-  .btn-menu-list {
-    width: 100%;
-    border: 2px solid var(--p-border-color);
-    border-radius: var(--p-border-rad);
-    padding: 10px;
-    background-color: var(--p-menu);
-    color: var(--p-text-primary);
-    font-weight: var(--btn-bold);
-
-    &:hover, &:active, &:focus {
-      background-color: var(--p-menu);
-      color: var(--btn-light);
-    }
-  }
-
-
-
-  // Panel Section from main (Body)
-  .p-body {
-      min-height: 100vh;
-      // display: flex;
-  }
-
-  // Panel's search section
-  .p-search {
-    width: 100%;
-    display: inline-flex;
-    flex-direction: row;
     margin-bottom: 10px;
+  }
 
-    * {
-      margin: 5px;
-    }
+  // Search panel
+  .p-search {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
 
     input {
-      width: 80%;
-      border: 2px solid var(--p-border-color);
-      border-radius: var(--p-border-rad);
-      padding: 10px;
-    }
-
-    button {
-      width: 20%;
-      border: 2px solid var(--p-border-color);
-      border-radius: var(--p-border-rad);
-      padding: 10px;
-    }
-  }
-
-  // Panel's base section
-  .panel-base {
-      margin: 15px 0;
-      padding: var(--p-padding);
-      background: var(--p-cream-section);
+      flex: 1;
+      padding: 5px;
       border: 1px solid var(--p-border-color);
       border-radius: var(--p-border-rad);
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-
-  // Profile cover section
-  .profile-cover {
-      display: flex;
-      justify-content: center;
-      text-align: center;
-      background-color: royalblue;
       width: 100%;
-      // height: 200px;
-
-      img {
-          margin-top: 50px;
-          text-align: center;
-          justify-content: center;
-          width: 120px;
-          height: 120px;
-          border-radius: 50%;
-          border: 5px solid var(--p-border-color);
-          bottom: 0px;
-      }
-  }
-
-  // User form section
-  .p-form-user {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      position: relative;
-      margin-bottom: 20px;
-      width: 100%;
-      min-height: 250px;
-      padding: 0;
-      }
-
-      h3 {
-          margin: 0;
-          font-size: 20px;
-          font-weight: bold;
-          color: var(--p-text-primary);
-      }
-
-      p {
-          margin: 0;
-          font-size: 14px;
-          color: var(--p-text-secondary);
-      }
-
-      // input {
-      //     width: 100%;
-      //     border: 2px solid var(--p-border-color);
-      //     border-radius: var(--p-border-rad);
-      //     padding: 10px;
-      //     margin-bottom: 10px;
-      // }
-  }
-
-  // Profile name section view
-  .profile-name-sec {
-      display: flex;
-      justify-content: center;
-      text-align: center;
-      background-color: var(--p-cream-section);
-      width: 100%;
-      height: 50px;
-
-      h3 {
-          margin-top: 10px;
-          text-align: center;
-          justify-content: center;
-          color: var(--p-text-primary);
-      }
-  }
-
-  // Write the post section
-  .p-poster {
-    display: inline-flex;
-    flex-direction: column;
-    position: relative;
-    width: 100%;
-
-    form {
-      display: inline-flex;
-      flex-direction: column;
-      position: relative;
-      width: 100%;
-    }
-
-    // table {
-    //   display: inline-block;
-    // }
-
-    textarea {
-      border: 2px solid var(--p-border-color);
-      border-radius: var(--p-border-rad);
-      padding: 10px;
-      margin-bottom: 10px;
     }
 
     button {
-      border: 2px solid var(--p-border-color);
+      padding: 5px;
+      border: 1px solid var(--p-border-color);
       border-radius: var(--p-border-rad);
-      padding: 10px;
-
+      background-color: var(--p-btn-primary);
+      color: var(--p-btn-light);
+      margin-top: 5px;
     }
   }
 
-  .p-profile {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 20px;
-      height: 250px;
-      padding: 0;
-
-      h3 {
-          margin: 0;
-          font-size: 20px;
-          font-weight: bold;
-          color: var(--p-text-primary);
-      }
-
-      p {
-          margin: 0;
-          font-size: 14px;
-          color: var(--p-text-secondary);
-      }
-  }
-
-  .p-footer {
-      background-color: var(--p-footer);
-      border-top: 1px solid var(--p-footer-border);
-      padding: 20px 0;
-      position: relative;
-      width: 100%;
-
-      p {
-          margin-top: 0;
-          text-align: center;
-      }
-  }
-
-  // Text section
-  .p-title {
-      color: var(--p-text-primary);
-      font-size: 25px;
-      font-weight: bold;
-  }
-
-  // Table section
   .p-table {
-    width: 100%;
-    display: inline-table;
+    display: flex;
     flex-direction: column;
-    border-collapse: collapse;
-    min-height: 20vh;
+    // border: 1px solid var(--p-border-color);
+    // border-radius: var(--p-border-rad);
+    margin-top: 10px;
+
+    // Table header
     thead {
       width: 100%;
-      background-color: var(--p-table-head);
-      color: var(--p-text-primary);
+      display: flex;
+      flex-direction: row;
+      // justify-content: space-between;
+      background-color: var(--table-primary-light);
+      color: var(--p-btn-light);
+      font-weight: bold;
+      // border-bottom: 1px solid var(--table-primary-light);
     }
 
+    th {
+      width: 100%;
+      padding: 10px;
+      flex: 1;
+    }
+
+    // Table body
     tbody {
       width: 100%;
-      background-color: var(--p-table-body);
-      // border: 1px solid var(--p-border-color);
-      color: var(--p-text-primary);
+      display: flex;
+      flex-direction: column;
     }
 
     tr {
       width: 100%;
       display: flex;
-      justify-content: space-between;
-      border-bottom: 1px solid var(--p-border-color);
-    }
-
-    th {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      padding: 10px;
+      flex-direction: row;
+      // border-bottom: 1px solid var(--p-border-color);
     }
 
     td {
-      width: 100%;
       display: inline-flex;
-      text-align: center;
+      flex-direction: row;
       justify-content: space-between;
+      width: 100%;
       padding: 10px;
+      flex: 1;
     }
 
     button {
-      margin: 0 5px;
+      padding: 5px;
+      border: 1px solid var(--p-border-color);
+      border-radius: var(--p-border-rad);
+      background-color: var(--p-btn-primary);
+      color: var(--p-btn-light);
+      margin-top: 5px;
+      // min-width: 15px;
+      width: 100%;
+    }
+    .table-image {
+      margin-right: 10px;
+      max-width: 70px;
+      border: 1px solid var(--p-border-color);
+      border-radius: 100%;
+    }
+
+    .bold {
+      font-weight: bold;
+    }
+
+    .role-type {
+      background-color: var(--p-btn-primary);
+      color: #eee;
       border: 2px solid var(--p-border-color);
       border-radius: var(--p-border-rad);
+      text-align: center;
       padding: 5px;
     }
-  }
 
-  .p-announcement-success {
-    display: inline-flex;
-    flex-direction: column;
-    position: relative;
-    width: 100%;
-    background-color: var(--p-panel-success-soft);
-    margin-bottom: 20px;
-    // padding: 0;
-
-    h3 {
-      margin: 0;
-      font-size: 20px;
-      font-weight: bold;
-      color: var(--p-text-primary);
+    .role_admin {
+      color: var(--p-btn-primary)
     }
-
-    p {
-      margin: 0;
-      font-size: 14px;
-      color: var(--p-text-secondary);
   }
-
-    // Navbar
 }
+
+

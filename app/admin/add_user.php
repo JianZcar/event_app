@@ -40,6 +40,7 @@
   <link href="./../global_assets/css/panel.css" rel="stylesheet">
   <link href="./../global_assets/css/sidebar.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
 <body class="mainstream-panel">
@@ -58,7 +59,6 @@
     <div>
       <h1 class="text-2xl"><?php echo $page_full_name?></h1>
     </div>
-    <form action=""><input type="email" name="email" id="email"><button type="submit"></button></form>
   </header>
 
   <main class="p-4 p-body">
@@ -108,6 +108,5 @@
   </footer>
   <script src="./../global_assets/js/sidebar.js"></script>
 </div>
-
 </body>
 </html>
