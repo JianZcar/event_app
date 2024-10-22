@@ -14,9 +14,51 @@
   z-index: 10;
 }
 
-// Mobile View
+.p-footer {
+  text-align: center;
+}
 
+.btn-menu-list {
+  width: 100%;
+  // border: 2px solid var(--p-border-color);
+  border-radius: var(--p-border-rad);
+  padding: 10px;
+  background-color: var(--p-menu);
+  color: var(--p-text-primary);
+  font-weight: var(--btn-bold);
+  color: var(--p-text-light);
+
+  i {
+    font-size: 2rem;
+  }
+  &:hover, &:active, &:focus {
+    background-color: var(--p-menu);
+    color: var(--btn-light);
+  }
+}
+
+
+// ROLES
+.role-type {
+  background-color: var(--p-btn-primary);
+  color: #eee;
+  border: 2px solid var(--p-border-color);
+  border-radius: var(--p-border-rad);
+  text-align: center;
+  padding: 3px;
+  width: 150px;
+}
+
+.role_admin {
+  color: var(--p-btn-primary)
+}
+
+
+
+// MOBILE VIEW
 @media screen and (max-width: 768px) {
+  // Sidebar action
+
   // Navigator for sidebar
   .p-base-nav {
     display: inline-flex;
@@ -27,11 +69,15 @@
   // Whole body
   .mainstream-panel {
     min-height: 100vh;
+    display: inline-flex;
+    flex-direction: row;
+    width: 100vw;
   }
 
   // Main content inside of body
   .main-content {
     min-height: 100vh;
+    width: 100vw;
   }
 
   // Content inner of main content
@@ -109,7 +155,7 @@
 
     th {
       width: 100%;
-      padding: 10px;
+      padding: 10px 0;
       flex: 1;
     }
 
@@ -156,20 +202,90 @@
     .bold {
       font-weight: bold;
     }
+  }
 
-    .role-type {
-      background-color: var(--p-btn-primary);
-      color: #eee;
-      border: 2px solid var(--p-border-color);
-      border-radius: var(--p-border-rad);
-      text-align: center;
+  .p-form-user {
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    position: relative;
+    width: 100%;
+    // border: 10px solid var(--p-border-color);
+  
+    .frmInput {
+      display: inline-flex;
+      padding: 5px 0;
+      width: 100%;
+      flex-direction: row;
+      // justify-content: space-between;
+    }
+    input[type="checkbox"] {
+      float: right;
+      right: 0;
       padding: 5px;
+      border: 1px solid var(--p-border-color);
+      border-radius: var(--p-border-rad);
+      width: 10px;
     }
 
-    .role_admin {
-      color: var(--p-btn-primary)
+    input {
+      flex: 1;
+      padding: 5px;
+      border: 1px solid var(--p-border-color);
+      border-radius: var(--p-border-rad);
+      width: 100%;
+    }
+
+    select {
+      flex: 1;
+      padding: 5px;
+      border: 1px solid var(--p-border-color);
+      border-radius: var(--p-border-rad);
+      width: 100%;
+    }
+      
+    label {
+      // flex: 1;
+      // padding: 5px;
+      // border: 1px solid var(--p-border-color);
+      // border-radius: var(--p-border-rad);
+      width: 100%;
     }
   }
+}
+
+// Buttons
+.btn-common {
+  padding: 5px;
+  width: 100%;
+  border: 1px solid var(--p-border-color);
+  border-radius: var(--p-border-rad);
+  background-color: var(--p-btn-primary);
+  color: var(--p-btn-light);
+  margin-top: 5px;
+}
+
+// Buttons
+.btn-accept-1 {
+  background-color: var(--p-btn-success);
+  color: var(--p-btn-light);
+}
+
+.btn-danger-1 {
+  background-color: var(--p-btn-danger);
+  color: var(--p-btn-light);
+}
+
+
+// Panel colors
+.p-common {
+  background-color: var(--p-cream-section);
+  color: var(--p-btn-light);
+}
+
+.p-accept {
+  background-color: var(--p-btn-success);
+  color: var(--p-btn-light);
 }
 
 

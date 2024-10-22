@@ -51,6 +51,7 @@
   /* Text color */
   --p-text-primary: #212529;
   --p-text-secondary: #6c757d;
+  --p-text-light: #f8f9fa;
 
   /* Font */
   --btn-bold : bold;

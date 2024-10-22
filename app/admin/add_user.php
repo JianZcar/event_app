@@ -85,7 +85,7 @@
           <input type="password" name="password" id="password" class="tbox-preset-1" placeholder="Password" required minlength="8">
         </div>
         <div class="frmInput">
-        Active Account <input type="checkbox" name="is_active" id="is_active" value="1">
+        <label for="is_active">Active?</label><input type="checkbox" name="is_active" id="is_active" value="1">
         </div>
         <div class="frmInput">
           <select name="role" id="role">

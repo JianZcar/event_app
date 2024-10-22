@@ -132,10 +132,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </select>
             </div>
             <div class="frmInput">
-                <button type="submit" class="btn-accept-1">Save</button>
+                <button type="submit" class="btn-common btn-accept-1">Save</button>
             </div>
             <div class="frmInput">
-                <button type="button" onclick="window.location.href='index.php';" class="btn-common-1">Cancel</button>
+                <button type="button" class="btn-common" onclick="window.location.href='index.php';" class="btn-common-1">Cancel</button>
+            </div>
+            <div class="frmInput">
+                <button type="button" class="btn-common btn-danger-1" onclick="window.location.href='delete_user.php?id=<?php $user_id ?>';" class="btn-common-1">Delete</button>
             </div>
         </form>
     </div>

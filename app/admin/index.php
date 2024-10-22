@@ -70,7 +70,7 @@
 
     <?php
       if (isset($msg_account_announce)) {
-        echo "<div class='panel-base p-announcement-success'>$msg_account_announce</div>";
+        echo "<div class='panel-base p-accept'>$msg_account_announce</div>";
       }
     ?>
 
@@ -90,45 +90,47 @@
       <h3>Manage Users</h3>
       <!-- add button <A> -->
       <!-- <a href="" class="btn-add">Add</a> -->
-      <button onclick="window.location.href='add_user.php';">Add User</button>
+      <button class="btn-common btn-accept-1" style="margin: 10px 0;" onclick="window.location.href='add_user.php';">Add User</button>
       <div class="p-search">
         <input type="text" name="search" id="search" placeholder="Search">
         <button type="submit">Search</button>
       </div>
       <table class="p-table">
-        <thead>
-          <tr>
-            <th colspan="2">Username</th>
-            <th>Actions</th>
-          </tr>
-        </thead>
-        <tbody>
-          <?php
-            // print all users
-            if ($result_users->num_rows > 0) {
-              while ($row = $result_users->fetch_assoc()) {
-                $username = $row['username'];
-                $is_active = ($row['is_active'] == 1 ? "active" : "inactive");
-                $role_name = $row['role_name'];
-                $text_color = $row['color'];
-                $bg_color = $row['bg_color'];
-                echo "<tr>";
-                echo "<td>";
-                echo "<img class=\"table-image\" src=\"../global_assets/img/default_user.png\">";
-                echo "<div class=\"user-info\">";
-                echo "<p class=\"bold\">$username</p>";
-                echo "<p class=\"role-type\">$role_name</p>";
-                echo "</div>";
-                echo "</td>";
-                echo "<td>";
-                echo "<button class=\"btn-$is_active\">Edit</button>";
-                echo "<tr>";
+          <thead>
+              <tr>
+                  <th colspan="3">Username</th>
+                  <th>Actions</th>
+              </tr>
+          </thead>
+          <tbody>
+              <?php
+              // print all users
+              if ($result_users->num_rows > 0) {
+                  while ($row = $result_users->fetch_assoc()) {
+                      $user_id = $row['id'];
+                      $username = $row['username'];
+                      $is_active = ($row['is_active'] == 1 ? "active" : "inactive");
+                      $role_name = $row['role_name'];
+                      $text_color = $row['color'];
+                      $bg_color = $row['bg_color'];
+                      echo "<tr>";
+                      echo "<td colspan='3'>";
+                      echo "<img class=\"table-image\" src=\"../global_assets/img/default_user.png\">";
+                      echo "<div class=\"user-info\">";
+                      echo "<p class=\"bold\" style=\"color:$text_color;\">$username</p>";
+                      echo "<p class=\"role-type\" style=\"background-color: $bg_color\">$role_name</p>";
+                      echo "</div>";
+                      echo "</td>";
+                      echo "<td>";
+                      echo "<button onclick=\"window.location.href='edit_user.php?id=$user_id';\" class=\"btn-$is_active\">Edit</button>";
+                      echo "</td>";
+                      echo "</tr>";
+                  }
+              } else {
+                  echo "<tr><td colspan='4'>No users found.</td></tr>";
               }
-            } else {
-              echo "<tr><td colspan='4'>No users found.</td></tr>";
-            }
-          ?>
-        </tbody>
+              ?>
+          </tbody>
       </table>
     </div>
   </main>

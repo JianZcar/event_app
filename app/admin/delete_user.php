@@ -67,10 +67,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         Are you sure you want to delete this user?
       </div>
       <div class="frmInput">
-        <button type="submit" class="btn-danger-1">Delete</button>
+        <button type="submit" class="btn-common btn-danger-1">Delete</button>
       </div>
       <div class="frmInput">
-        <button type="button" onclick="window.location.href='index.php';" class="btn-common-1">Cancel</button>
+        <button type="button" class="btn-common" onclick="window.location.href='index.php';" class="btn-common-1">Cancel</button>
       </div>
       <!-- <button type="submit" class="btn-post-1">Add User</button> -->
     </form>

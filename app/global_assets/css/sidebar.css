@@ -1,245 +1,87 @@
-@keyframes rainbow-shadow {
-  0% {
-    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5), 0 0 5px rgba(255, 127, 0, 0.5), 0 0 5px rgba(255, 255, 0, 0.5), 0 0 5px rgba(0, 255, 0, 0.5), 0 0 5px rgba(0, 0, 255, 0.5), 0 0 5px rgba(75, 0, 130, 0.5), 0 0 5px rgba(148, 0, 211, 0.5);
-  }
-  14% {
-    box-shadow: 0 0 5px rgba(255, 127, 0, 0.5), 0 0 5px rgba(255, 255, 0, 0.5), 0 0 5px rgba(0, 255, 0, 0.5), 0 0 5px rgba(0, 0, 255, 0.5), 0 0 5px rgba(75, 0, 130, 0.5), 0 0 5px rgba(148, 0, 211, 0.5), 0 0 5px rgba(255, 0, 0, 0.5);
-  }
-  28% {
-    box-shadow: 0 0 5px rgba(255, 255, 0, 0.5), 0 0 5px rgba(0, 255, 0, 0.5), 0 0 5px rgba(0, 0, 255, 0.5), 0 0 5px rgba(75, 0, 130, 0.5), 0 0 5px rgba(148, 0, 211, 0.5), 0 0 5px rgba(255, 0, 0, 0.5), 0 0 5px rgba(255, 127, 0, 0.5);
-  }
-  42% {
-    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5), 0 0 5px rgba(0, 0, 255, 0.5), 0 0 5px rgba(75, 0, 130, 0.5), 0 0 5px rgba(148, 0, 211, 0.5), 0 0 5px rgba(255, 0, 0, 0.5), 0 0 5px rgba(255, 127, 0, 0.5), 0 0 5px rgba(255, 255, 0, 0.5);
-  }
-  57% {
-    box-shadow: 0 0 5px rgba(0, 0, 255, 0.5), 0 0 5px rgba(75, 0, 130, 0.5), 0 0 5px rgba(148, 0, 211, 0.5), 0 0 5px rgba(255, 0, 0, 0.5), 0 0 5px rgba(255, 127, 0, 0.5), 0 0 5px rgba(255, 255, 0, 0.5), 0 0 5px rgba(0, 255, 0, 0.5);
-  }
-  71% {
-    box-shadow: 0 0 5px rgba(75, 0, 130, 0.5), 0 0 5px rgba(148, 0, 211, 0.5), 0 0 5px rgba(255, 0, 0, 0.5), 0 0 5px rgba(255, 127, 0, 0.5), 0 0 5px rgba(255, 255, 0, 0.5), 0 0 5px rgba(0, 255, 0, 0.5), 0 0 5px rgba(0, 0, 255, 0.5);
-  }
-  85% {
-    box-shadow: 0 0 5px rgba(148, 0, 211, 0.5), 0 0 5px rgba(255, 0, 0, 0.5), 0 0 5px rgba(255, 127, 0, 0.5), 0 0 5px rgba(255, 255, 0, 0.5), 0 0 5px rgba(0, 255, 0, 0.5), 0 0 5px rgba(0, 0, 255, 0.5), 0 0 5px rgba(75, 0, 130, 0.5);
-  }
-  100% {
-    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5), 0 0 5px rgba(255, 127, 0, 0.5), 0 0 5px rgba(255, 255, 0, 0.5), 0 0 5px rgba(0, 255, 0, 0.5), 0 0 5px rgba(0, 0, 255, 0.5), 0 0 5px rgba(75, 0, 130, 0.5), 0 0 5px rgba(148, 0, 211, 0.5);
-  }
-}
 @media screen and (max-width: 768px) {
-  @keyframes sidebarAnimOpen {
+  @keyframes sidebar_open {
     from {
-      min-width: 0;
-      max-width: 0;
+      width: 0px;
     }
     to {
-      max-width: 80vw;
-      min-width: 80vw;
-    }
-  }
-  @keyframes sidebarAnimClose {
-    from {
-      min-width: 80vw;
-    }
-    to {
-      min-width: 0;
+      width: 80vw;
     }
   }
   .sidebar-content {
-    overflow: hidden;
     display: none;
-    height: 100vh;
     flex-direction: column;
-    position: relative;
-    width: 100%;
-    height: 100vh;
-    color: white;
-    transition: all 0.5s ease;
-    border-radius: var(--p-border-rad);
-    border-right: 1px solid var(--p-border-color);
+    min-width: 80vw;
+    animation: sidebar_open 0.2s;
   }
   .sidebar-content.open {
     display: flex;
-    animation: sidebarAnimOpen 0.5s forwards;
-  }
-  .sidebar-content.close {
-    animation: sidebarAnimClose 0.5s forwards;
   }
   .sidebar-top {
-    height: 50px;
     display: flex;
-    margin: 2rem;
-    font-size: 20px;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid var(--p-border-color);
   }
-  .sidebar-top * {
-    left: 0;
-    right: 0;
+  .sidebar-top .logo {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    color: var(--p-text-light);
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 0 0 0 10px;
   }
   .sidebar-profile {
     display: flex;
     flex-direction: row;
-    position: relative;
-    margin: 10px;
-    min-height: 100px;
-    color: #eee;
-    border: 1px solid var(--p-border-color);
-    border-radius: var(--p-border-rad);
-    padding: var(--p-padding);
-    background-color: var(--p-panel-primary);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-    animation: rainbow-shadow 5s infinite;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid var(--p-border-color);
+    padding: 15px;
   }
-  .sidebar-profile * {
-    color: #eee;
-  }
-  .sidebar-profile img {
-    width: 100px;
+  .user-img {
+    max-width: 75px;
+    max-height: 75px;
     border-radius: 100%;
-    border: 1px solid #eee;
-    margin-right: 30px;
-  }
-  .sidebar-profile p {
-    font-size: 1.5rem;
-  }
-  .sidebar-menu {
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
-  }
-  .sidebar-menu i {
+    border: 3px solid var(--p-border-color);
     margin-right: 10px;
   }
-  .sidebar-menu li {
-    margin: 2px;
-    padding: 10px;
-    background-color: darkcyan;
-    border-top: 2px solid #eee;
-    border-right: 2px solid #eee;
-    border-left: 2px solid #eee;
-    border-bottom: 2px solid var(--p-border-color);
-    border-radius: var(--p-border-rad);
-    transition: 0.3s ease;
-    font-size: 1.5rem;
-    cursor: pointer;
-  }
-  .sidebar-menu li:hover {
-    background-color: var(--p-hover);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  }
-}
-@media screen and (min-width: 769px) {
-  @keyframes sidebarAnimOpen {
-    from {
-      min-width: 80px;
-      max-width: 80px;
-    }
-    to {
-      max-width: 250px;
-      min-width: 250px;
-    }
-  }
-  @keyframes sidebarAnimClose {
-    from {
-      min-width: 80vw;
-    }
-    to {
-      min-width: 0;
-    }
-  }
-  .sidebar-content {
-    overflow: hidden;
+  .sidebar-profile-user {
     display: flex;
-    min-height: 100vh;
     flex-direction: column;
-    position: relative;
-    min-width: 80px;
-    max-width: 80px;
-    height: 100vh;
-    color: white;
-    transition: all 0.5s ease;
-    border-radius: var(--p-border-rad);
-    border-right: 1px solid var(--p-border-color);
+    align-items: center;
+    justify-content: center;
+    color: var(--p-text-light);
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 0 20px;
   }
-  .sidebar-content.open {
-    display: flex;
-    animation: sidebarAnimOpen 0.5s forwards;
+  .sidebar-menu {
+    display: inline-flex;
+    flex-direction: column;
   }
-  .sidebar-content.close {
-    animation: sidebarAnimClose 0.5s forwards;
-  }
-  .sidebar-top {
-    height: 50px;
-    display: flex;
-    margin: 2rem;
-    font-size: 20px;
-  }
-  .sidebar-top * {
-    left: 0;
-    right: 0;
-  }
-  .sidebar-top span {
-    display: none;
-  }
-  .sidebar-top.open span {
-    display: block;
-  }
-  .sidebar-profile {
+  .sidebar-menu li {
     display: flex;
     flex-direction: row;
-    position: relative;
-    margin: 10px;
-    min-height: 100px;
-    color: #eee;
+    align-items: center;
+    justify-content: space-between;
+    padding: 15px;
+    border-bottom: 1px solid var(--p-border-color);
   }
-  .sidebar-profile * {
-    color: #eee;
-  }
-  .sidebar-profile img {
-    margin: 5px;
-    min-width: 50px;
-    max-width: 50px;
-    min-height: 50px;
-    max-height: 50px;
-    border-radius: 100%;
-    border: 1px solid #eee;
-    margin-right: 30px;
-  }
-  .sidebar-profile p {
-    font-size: 1rem;
-  }
-  .sidebar-menu {
-    margin: 10px;
+  .sidebar-menu li a {
     display: flex;
-    flex-direction: column;
-    list-style-type: none;
-    padding: 0;
-    margin: 0;
+    flex-direction: row;
+    color: var(--p-text-light);
+    font-weight: bold;
+    font-size: 1.2rem;
   }
-  .sidebar-menu i {
-    margin-right: 10px;
-  }
-  .sidebar-menu li {
-    margin: 2px;
-    padding: 10px;
-    background-color: darkcyan;
-    border-top: 2px solid #eee;
-    border-right: 2px solid #eee;
-    border-left: 2px solid #eee;
-    border-bottom: 2px solid var(--p-border-color);
-    border-radius: var(--p-border-rad);
-    transition: 0.3s ease;
-    font-size: 1rem;
-    cursor: pointer;
-  }
-  .sidebar-menu li:hover {
-    background-color: var(--p-hover);
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
-  }
-  .sidebar-menu li span {
-    display: none;
-  }
-  .sidebar-menu.open li span {
-    display: block;
+  .sidebar-menu li i {
+    margin-right: 1rem;
+    color: var(--p-text-light);
+    font-size: 1.5rem;
   }
 }/*# sourceMappingURL=sidebar.css.map */
