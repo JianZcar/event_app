@@ -14,9 +14,9 @@
     </div>
 </div>
 <ul class="sidebar-menu">
-  <li><a href="#"><i class='bx bx-home'></i>Home</a></li>
-  <li><a href="#"><i class='bx bx-inbox'></i>Inbox</a></li>
-  <li><a href="#"><i class='bx bx-calendar'></i>Calendar</a></li>
-  <!-- Logout -->
-  <li><a href="#"><i class='bx bx-log-out'></i>Logout</a></li>
+  <li><a href="./index.php"><i class='bx bx-home'></i><span>Home</span></a></li>
+  <li><a href="./inbox.php"><i class='bx bxs-inbox'></i><span>Inbox</span></a></li>
+  <li><a href="./calendar.php"><i class='bx bx-calendar'></i><span>Calendar</span></a></li>
+  <li><a href="./user_management.php"><i class='bx bxs-user-account'></i><span>Admin Panel</span></a></li>
+  <li><a href="#"><i class='bx bx-log-out'></i><span>Logout</span></a></li>
 </ul>
