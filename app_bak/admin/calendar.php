@@ -1,8 +1,6 @@
 <?php
   session_start();
-
-  // Include the project information
-  include "./../proj_info.php";
+  include "./../../proj_info.php";
 
   $page_name = "Admin Panel";
   $page_full_name = "$page_name | $proj_name";
@@ -13,17 +11,25 @@
     unset($_SESSION['msg_account_announce']);
   }
 
-  // SQL Query
-  $sql_cmd = <<<SQL
-
+  $sql_users = <<<SQL
+  SELECT 
+      users.id,
+      users.username, 
+      users.is_active, 
+      user_roles.role_name,
+      user_roles.color,
+      user_roles.bg_color
+  FROM 
+      users 
+  INNER JOIN 
+      user_roles 
+  ON 
+      users.user_role = user_roles.id
+  ORDER BY 
+      users.id;
   SQL;
-
-  // Execute the query
+  // echo $sql_users;
   $result_users = $db_conn->query($sql_users);
-
-  // If other choice than above, use this
-  // $sql_cmd = "SELECT * FROM users";
-  // $result_users = $db_conn->query($sql_cmd);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -36,12 +42,24 @@
   <link href="./../global_assets/css/sidebar.css" rel="stylesheet">
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+
+  <!-- CALENDAR -->
+  <!-- CSS for full calender -->
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.css" rel="stylesheet" />
+  <!-- JS for jQuery -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <!-- JS for full calender -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
+  <!-- bootstrap css and js -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </head>
 
 <body class="mainstream-panel">
-  
+
 <div class="bg-blue-500 sidebar-content" id="sidebar-content">
-  <?php include_once './../global_assets/php/sidebar.php';?>
+  <?php require './../global_assets/php/sidebar.php';?>
 </div>
 
 <div class="main-content">
@@ -55,13 +73,22 @@
   </header>
 
   <main class="p-4 p-body">
-    <!-- Here the body -->
+    <div class="panel-base p-title">
+      <h1>Welcome back, Administrator!</h1>
+    </div>
+    <div class="panel-base">
+      <h1>Navigate where you want to go.</h1>
+    </div>
+    <div class="panel-base">
+      <div class="p-calendar" id="calendar"></div>
+    </div>
   </main>
-
   <footer class="bg-gray-800 text-white p-4 p-footer" id="p-footer">
     <p>All rights reserved <?php echo $proj_current_year?></p>
   </footer>
+  
   <script src="./../global_assets/js/sidebar.js"></script>
+  <script src="./../global_assets/js/calendar.js"></script>
 </div>
 </body>
 </html>

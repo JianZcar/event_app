@@ -1,3 +1,85 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+
+  .slide-panel {
+    @apply min-w-16 flex flex-col transition-all duration-200 bg-gradient-to-b from-blue-500 to-green-800;
+  }
+
+  .slide-profile {
+    @apply flex flex-row relative rounded-xl;
+  }
+
+  .slide_profile_img {
+    @apply flex flex-row relative max-h-12 border-2 border-white rounded-full m-2;
+  }
+
+  .slide-list {
+    @apply max-h-16 flex flex-row text-2xl p-2.5 text-slate-900;
+  }
+
+  .slide-list:hover {
+    @apply bg-sky-800 text-slate-100;
+  }
+
+  .set-hide {
+    @apply hidden;
+  }
+
+  .slide-panel-open {
+    @apply min-w-64;
+  }
+
+  .show {
+    @apply block;
+  }
+
+  /* Hover Action */
+  .hover-action {
+    @apply hover:bg-sky-800 hover:text-slate-100 rounded-xl;
+  }
+
+  .p-footer {
+    @apply text-center;
+  }
+
+  .p-base {
+    @apply flex flex-col rounded-xl border-2 border-black p-4 m-4;
+  }
+
+  .p-title {
+    @apply font-bold;
+  }
+
+  /* Table */
+  .p-table {
+    @apply flex flex-col border border-black;
+  }
+
+  .p-table-thead {
+    @apply w-full flex flex-row text-slate-950 font-bold;
+  }
+
+  .p-table-th {
+    @apply;
+  }
+
+
+
+  .user-role {
+    @apply border-2 py-2 px-4 rounded-xl bg-cyan-800 text-zinc-50;
+  }
+
+
+  /* Button */
+  .p-btn-common {
+    @apply rounded-lg text-lg w-full h-8 bg-primary text-zinc-50 justify-center;
+  }
+  /* .p-button-common {
+    @apply py-2 px-4 rounded-xl bg-primary-500 text-zinc-50 hover:bg-cyan-800 transition-colors duration-200;
+  } */
+
+
+}

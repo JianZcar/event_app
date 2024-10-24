@@ -19,10 +19,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 
     // Redirect to a confirmation or list page
-    header("Location: index.php");
+    header("Location: user_managment.php");
   } else {
     $_SESSION['msg_account_announce'] = "User ID not provided.";
-    header("Location: index.php");
+    header("Location: user_managment.php");
   }
 }
 ?>
@@ -70,7 +70,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <button type="submit" class="btn-common btn-danger-1">Delete</button>
       </div>
       <div class="frmInput">
-        <button type="button" class="btn-common" onclick="window.location.href='index.php';" class="btn-common-1">Cancel</button>
+        <button type="button" class="btn-common" onclick="window.location.href='user_managment.php';" class="btn-common-1">Cancel</button>
       </div>
       <!-- <button type="submit" class="btn-post-1">Add User</button> -->
     </form>

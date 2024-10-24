@@ -38,8 +38,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link href="../global_assets/css/output.css" rel="stylesheet">
   <link href="./../global_assets/css/global_footer.css" rel="stylesheet">
-  <link href="./../global_assets/css/panel.css" rel="stylesheet">
-  <link href="./../global_assets/css/sidebar.css" rel="stylesheet">
+  <!-- <link href="./../global_assets/css/panel.css" rel="stylesheet"> -->
+  <!-- <link href="./../global_assets/css/sidebar.css" rel="stylesheet"> -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
@@ -51,6 +51,7 @@
 </div>
 
 <div class="main-content">
+  <!-- <header class="bg-blue-500 text-white p-4 p-base-nav"> -->
   <header class="bg-blue-500 text-white p-4 p-base-nav">
     <div>
       <a class="btn-menu-list" id="btn-menu-list" onclick="toggleSidebar()"><i class='bx bx-menu'></i></a>

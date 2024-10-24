@@ -15,7 +15,7 @@ if ($db_toggle) {
   $db_host = "localhost";         // DB Hostname
   $db_port = "3306";              // DB Port
   $db_user = "root";              // DB Username
-  $db_pass = "Day15@!";                  // DB Password
+  $db_pass = "Day15@!";           // DB Password
   $db_name = "event_app";         // DB Name
 
 

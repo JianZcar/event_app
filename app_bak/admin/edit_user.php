@@ -39,12 +39,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   }
 
   if ($db_conn->query($sql_cmd) === TRUE) {
-    session_announce("User {$_POST['username']} updated successfully.", TRUE, "index.php");
+    session_announce("User {$_POST['username']} updated successfully.", TRUE, "user_management.php");
   } else {
-    session_announce("Error updating user $username.", TRUE, "index.php");
+    session_announce("Error updating user $username.", TRUE, "user_management.php");
   }
 
-  header("Location: index.php");
+  header("Location: user_management.php");
 
 } else {
   if (isset($_GET['id'])) {
@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       $role = htmlspecialchars($row['user_role']);
     } else {
       $_SESSION['msg_account_announce'] = "User ID not found.";
-      header("Location: index.php");
+      header("Location: user_managment.php");
     }
   }
 }
@@ -91,7 +91,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </div>
 
 <div class="main-content">
-<header class="bg-blue-500 text-white p-4">
+<header class="bg-blue-500 text-white p-4 p-base-nav">
     <div>
         <a class="btn-menu-list" id="btn-menu-list" onclick="toggleSidebar()"><i class='bx bx-menu'></i></a>
     </div>
@@ -135,7 +135,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button type="submit" class="btn-common btn-accept-1">Save</button>
             </div>
             <div class="frmInput">
-                <button type="button" class="btn-common" onclick="window.location.href='index.php';" class="btn-common-1">Cancel</button>
+                <button type="button" class="btn-common" onclick="window.location.href='./user_management.php';" class="btn-common-1">Cancel</button>
             </div>
             <div class="frmInput">
                 <button type="button" class="btn-common btn-danger-1" onclick="window.location.href='delete_user.php?id=<?php $user_id ?>';" class="btn-common-1">Delete</button>

@@ -51,6 +51,7 @@
 </div>
 
 <div class="main-content">
+  <!-- <header class="bg-blue-500 text-white p-4 p-base-nav"> -->
   <header class="bg-blue-500 text-white p-4 p-base-nav">
     <div>
       <a class="btn-menu-list" id="btn-menu-list" onclick="toggleSidebar()"><i class='bx bx-menu'></i></a>

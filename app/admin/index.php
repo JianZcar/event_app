@@ -36,108 +36,50 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><?php echo $page_full_name?></title>
   <link href="../global_assets/css/output.css" rel="stylesheet">
   <link href="./../global_assets/css/global_footer.css" rel="stylesheet">
-  <link href="./../global_assets/css/panel.css" rel="stylesheet">
-  <link href="./../global_assets/css/sidebar.css" rel="stylesheet">
+  <!-- <link href="./../global_assets/css/panel.css" rel="stylesheet"> -->
+  <!-- <link href="./../global_assets/css/sidebar.css" rel="stylesheet"> -->
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
-<body class="mainstream-panel">
-  
-<div class="bg-blue-500 sidebar-content" id="sidebar-content">
-  <?php include_once './../global_assets/php/sidebar.php';?>
+<body class="flex flex-row min-w-screen h-screen">
+
+<!-- Left Sidebar -->
+<div class="slide-panel" id="sidebar-content">
+  <?php include './../global_components/sidebar.php';?>
 </div>
 
-<div class="main-content">
-  <header class="bg-blue-500 text-white p-4 p-base-nav">
-    <div>
-      <!-- call the function toggleSidebar() -->
-      <a class="btn-menu-list" id="btn-menu-list" onclick="toggleSidebar()"><i class='bx bx-menu'></i></a>
-      <!-- <a class="btn-menu-list" id="btn-menu-list"><i class='bx bx-list-ul'>Menu</i></a> -->
-    </div>
-    <div>
-      <h1 class="text-2xl"><?php echo $page_full_name?></h1>
-    </div>
-  </header>
+<!-- Rest is main content -->
+  <!-- Main Content -->
+  <div class="flex flex-col w-screen max-w-screen min-h-screen">
+    <!-- Header -->
+    <header class="flex flex-row bg-blue-500 text-white p-1 btn-slide">
+      <a class="p-2 text-2xl hover-action" id="btn-menu-list" onclick="slideOpen()"><i class='bx bx-menu'></i></a>
+      <h1 class="p-2 text-2xl"><?php echo $page_full_name?></h1>
+    </header>
 
-  <main class="p-4 p-body">
-    <!-- <p>Main content goes here.</p> -->
-    <div class="panel-base p-title">
-      <h1>Admin Panel</h1> 
-    </div>
+    <!-- Main Object -->
+    <main class="flex flex-col w-full h-full m-h-screen">
 
-    <?php
-      if (isset($msg_account_announce)) {
-        echo "<div class='panel-base p-accept'>$msg_account_announce</div>";
-      }
-    ?>
+        <div class="p-base">
+            <h1 class="p-title" >Welcome back, Administrator!</h1>
+        </div>
 
-    <div class="panel-base p-poster">
-      <form>
-        User Management Properties
-        <table>
-          <tr>
-            <td><label for="enable-user-registration">Enable User Registration</label></td>
-            <td><input type="checkbox" id="enable-user-registration" name="user-registration" value="enable"></td>
-          </tr>
-        </table>
-      </form>
-    </div>
+        <div class="p-base">
+          <p>What would you like to do today?</p>
+        </div>
+    </main>
 
-    <div class="panel-base">
-      <h3>Manage Users</h3>
-      <!-- add button <A> -->
-      <!-- <a href="" class="btn-add">Add</a> -->
-      <button class="btn-common btn-accept-1" style="margin: 10px 0;" onclick="window.location.href='add_user.php';">Add User</button>
-      <div class="p-search">
-        <input type="text" name="search" id="search" placeholder="Search">
-        <button type="submit">Search</button>
-      </div>
-      <table class="p-table">
-          <thead>
-              <tr>
-                  <th colspan="3">Username</th>
-                  <th>Actions</th>
-              </tr>
-          </thead>
-          <tbody>
-              <?php
-              // print all users
-              if ($result_users->num_rows > 0) {
-                  while ($row = $result_users->fetch_assoc()) {
-                      $user_id = $row['id'];
-                      $username = $row['username'];
-                      $is_active = ($row['is_active'] == 1 ? "active" : "inactive");
-                      $role_name = $row['role_name'];
-                      $text_color = $row['color'];
-                      $bg_color = $row['bg_color'];
-                      echo "<tr>";
-                      echo "<td colspan='3'>";
-                      echo "<img class=\"table-image\" src=\"../global_assets/img/default_user.png\">";
-                      echo "<div class=\"user-info\">";
-                      echo "<p class=\"bold\" style=\"color:$text_color;\">$username</p>";
-                      echo "<p class=\"role-type\" style=\"background-color: $bg_color\">$role_name</p>";
-                      echo "</div>";
-                      echo "</td>";
-                      echo "<td>";
-                      echo "<button onclick=\"window.location.href='edit_user.php?id=$user_id';\" class=\"btn-$is_active\">Edit</button>";
-                      echo "</td>";
-                      echo "</tr>";
-                  }
-              } else {
-                  echo "<tr><td colspan='4'>No users found.</td></tr>";
-              }
-              ?>
-          </tbody>
-      </table>
-    </div>
-  </main>
-  <footer class="bg-gray-800 text-white p-4 p-footer" id="p-footer">
-    <p>All rights reserved <?php echo $proj_current_year?></p>
-  </footer>
-  <script src="./../global_assets/js/sidebar.js"></script>
-</div>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-4 p-footer" id="p-footer">
+      <p>All rights reserved <?php echo $proj_current_year?></p>
+    </footer>
+
+    <script src="./../global_assets/js/sidebar.js"></script>
+  </div>
+
 </body>
 </html>
