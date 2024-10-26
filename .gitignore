@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-node_modules/
-=======
+./app_bak
 /node_modules/.bin/cssesc
 /node_modules/.bin/cssesc.cmd
 /node_modules/.bin/cssesc.ps1
@@ -1953,4 +1951,3 @@ node_modules/
 /node_modules/yaml/README.md
 /node_modules/yaml/util.js
 /node_modules/.package-lock.json
->>>>>>> d04dac98d4bba7268a893aae225d8ede07bf98e8
