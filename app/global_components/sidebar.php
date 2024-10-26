@@ -25,7 +25,7 @@
   </li>
 
   <li class="slide-list">
-    <a class="w-full flex flex-direction" href="./inbox.php">
+    <a class="w-full flex flex-direction" href="./posts.php">
       <i class="text-4xl bx bxs-inbox"></i>
       <span class="set-hide">Inbox</span>
     </a>

@@ -17,12 +17,12 @@
   }
 
   .slide-list {
-    @apply max-h-16 flex flex-row text-2xl p-2.5 text-slate-900;
+    @apply max-h-16 flex flex-row text-2xl p-2.5 text-slate-900 hover:text-slate-100 hover:bg-sky-800;
   }
 
-  .slide-list:hover {
+  /* .slide-list:hover {
     @apply bg-sky-800 text-slate-100;
-  }
+  } */
 
   .set-hide {
     @apply hidden;
@@ -46,7 +46,7 @@
   }
 
   .p-base {
-    @apply flex flex-col rounded-xl border-2 border-black p-4 m-4;
+    @apply flex flex-col rounded-xl border-black p-4 m-4 shadow-xl bg-neutral-200;
   }
 
   .p-title {
@@ -74,12 +74,73 @@
 
 
   /* Button */
-  .p-btn-common {
-    @apply rounded-lg text-lg w-full h-8 bg-primary text-zinc-50 justify-center;
+  .btn-common {
+    @apply font-bold rounded-lg text-lg  w-48 h-16 bg-[#1f75ff] text-[#ffffff] justify-center;
   }
-  /* .p-button-common {
-    @apply py-2 px-4 rounded-xl bg-primary-500 text-zinc-50 hover:bg-cyan-800 transition-colors duration-200;
+
+  /* Textbox */
+  .p-textbox {
+    @apply bg-gray-50 text-gray-600 border focus:border-transparent
+    border-gray-300 sm:text-sm rounded-lg ring ring-transparent focus:ring-1
+    focus:outline-none focus:ring-gray-400 block w-full p-1 rounded-l-lg py-2 px-3;
+  }
+
+  /* Button */
+  /* .btn-post-1 {
+    @apply w-full text-white bg-blue-500 focus:outline-none 
+    focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6;
   } */
 
+  /* POST */
+  .btn-post-common-1 {
+    @apply w-full rounded-lg bg-blue-500 my-1 text-sm text-neutral-50 text-center px-5 py-2.5;
+  }
 
+  .btn-post-accept-1 {
+    @apply w-full rounded-lg bg-green-700 my-1 text-sm text-neutral-50 text-center px-5 py-2.5;
+  }
+
+  .btn-post-danger-1 {
+    @apply w-full rounded-lg bg-red-700 my-1 text-sm text-neutral-50 text-center px-5 py-2.5;
+  }
+
+  .panel-post-1 {
+    @apply w-full rounded-lg bg-blue-500 my-1 text-sm text-neutral-50 text-center px-5 py-2.5;
+  }
+
+  .btn-accept-1 {
+    @apply font-bold rounded-lg text-lg  w-24 h-12 bg-green-700 text-sm text-neutral-50 justify-center;
+  };
+
+  .btn-danger-1 {
+    @apply font-bold rounded-lg text-lg  w-24 h-12 bg-red-700 text-sm text-neutral-50 justify-center px-5 py-2.5;
+  };
+
+  .btn-search-1 {
+    @apply font-bold rounded-lg text-lg  w-24 h-12 bg-blue-500 text-neutral-50 justify-center;
+  }
+
+  /* Checkbox */
+  .checkbox-1 {
+    @apply w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500
+    dark:focus:ring-blue-600 dark:ring-offset-gray-700 dark:focus:ring-offset-gray-700 focus:ring-2
+    dark:bg-gray-600 dark:border-gray-500;
+  }
+
+  /* Selection-drop */
+  .selection-drop-1 {
+    @apply bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 
+    focus:border-blue-500 block w-full p-2;
+  }
+
+
+  /* Modal */
+  .modal-base {
+    @apply fixed inset-0 z-50 grid h-screen w-screen place-items-center bg-black bg-opacity-60 
+    backdrop-blur-sm transition-opacity duration-300 pointer-events-none opacity-0;
+  }
+
+  .modal-panel-1 {
+    @apply relative m-2.5 items-center flex justify-center rounded-xl h-24;
+  }
 }

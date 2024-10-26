@@ -2,7 +2,7 @@
 session_start();
 include "./../../proj_info.php";
 
-$page_name = "Login";
+$page_name = "Forgot Password";
 $page_full_name = "$page_name | $proj_name";
 
 // Message Control
@@ -71,19 +71,8 @@ if (isset($db_conn)) {
             </div>
           </div>
 
-          <div class="pb-6">
-            <label for="password" class="block mb-2 text-sm font-medium text-[#111827]">Password</label>
-            <div class="relative text-gray-400">
-              <input type="password" name="password" id="password" class="p-textbox" autocomplete="new-password" placeholder="Password">
-            </div>
-          </div>
-          <div class="text-sm">
-            <a href="./forgot_password.php" class="text-blue-600 hover:underline font-semibold">
-              Forgot your password?
-            </a>
-          </div>
-          <button type="submit" class="btn-post-accept-1">Login</button>
-          <p class="text-gray-800 text-sm !mt-8 text-center">Don't have an account? <a href="./register.php" class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Register here</a></p>
+          <button type="submit" class="btn-post-accept-1">Send Request</button>
+          <p class="text-gray-800 text-sm !mt-8 text-center">Want back to login? <a href="./index.php" class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Login here</a></p>
         </form>
       </div>
   </main>

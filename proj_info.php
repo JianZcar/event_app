@@ -18,12 +18,15 @@ if ($db_toggle) {
   $db_pass = "Day15@!";           // DB Password
   $db_name = "event_app";         // DB Name
 
-
   $db_conn = new mysqli($db_host, $db_user, $db_pass, $db_name, $db_port);
 
   // 2.1 Testing connection
-  if ($db_conn->connect_error) {
-    die("Connection failed: " . $db_conn->connect_error -> connect_error);
+  try {
+    if ($db_conn->connect_error) {
+      throw new mysqli_sql_exception($db_conn->connect_error);
+    }
+  } catch (mysqli_sql_exception $e) {
+    echo "Connection failed: " . $e->getMessage();
   }
 }
 

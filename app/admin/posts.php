@@ -2,7 +2,7 @@
   session_start();
   include "./../../proj_info.php";
 
-  $page_name = "Admin Panel";
+  $page_name = "Posts";
   $page_full_name = "$page_name | $proj_name";
 
   // Message Control
@@ -69,7 +69,21 @@
       </div>
 
       <div class="p-base">
-        <p>What would you like to do today?</p>
+        <!-- about posts for event app -->
+        <p>Overview of posts for the event schedule.</p>
+        <p></p>
+
+      </div>
+
+      <div class="p-base">
+        <p>Here's a list of users.</p>
+
+        <div class="grid grid-cols-4 sm:grid-cols-2 md:grid-cols-4 lg:grid-cols-4 xl:grid-cols-4 gap-2 
+                    px-1 py-1" bis_skin_checked="1">
+          <div class="max-h-48 w-full h-full bg-gray-300 rounded-xl p-4" bis_skin_checked="1">test</div>
+
+        </div>
+
       </div>
     </main>
 

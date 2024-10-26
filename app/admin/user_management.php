@@ -68,12 +68,16 @@
             <h1 class="p-title" >Welcome back, Administrator!</h1>
         </div>
 
-        <div class="p-base">
-          <p>What would you like to do today?</p>
+        <div class="p-base flex flex-row justify-between items-center">
+          <p>Here's a list of users.</p>
+          <button class="btn-accept-1" onclick="window.location.href='./add_user.php'">Add</button>
         </div>
 
         <div class="p-base">
-          <p>What would you like to do today?</p>
+          <div class="flex flex-row pb-2 space-x-4">
+            <input class="p-textbox" placeholder="Type your name..">
+            <button class="btn-search-1">Search</button>
+          </div>
 
           <!-- User's Table -->
           <div class="relative overflow-hidden shadow-md rounded-lg" bis_skin_checked="1">
@@ -102,30 +106,25 @@
 
                         echo <<<HTML
                         <tr class="py-5">
-                          <td class="flex flex-row py-5 border text-center font-bold p-4" contenteditable="true">
-                            <img class="w-16 rounded-full" rc="./../global_assets/img/default_user.png" alt="">
-                          $username
-                        </td>
-                          <td class="py-5 border text-center font-bold p-4" contenteditable="true">
+                          <td class="flex flex-row items-center py-5 border text-center font-bold p-4">
+                            <img class="w-16 h-16 rounded-full mr-5 border-2 border-black" src="./../global_assets/img/default_user.png" alt=""$username>
+                            <span>$username</span>
+                          </td>
+                          <td class="py-5 border text-center font-bold p-4">
                             <span class="$status_color">
                               <i class='bx $status_icon'></i>
                               $status
                             </span>
                           </td>
-                          <td class="py-5 border text-center font-bold p-4" contenteditable="true">
-                            <a href="./edit_user.php?id=$user_id" class="btn-common btn-accept-1">Edit</a>
+                          <td class="py-5 border text-center font-bold p-4">
+                          <!-- <button class="font-bold rounded-lg text-lg  w-48 h-16 bg-[#1f75ff] text-[#ffffff] justify-center">Enter your text!</button> -->
+                            <a href="./edit_user.php?id=$user_id" class="btn-common">Edit</a>
                           </td>
                         </tr>
                         HTML;
                       }
                     }
                   ?>
-                  
-                    <tr class="py-5">
-                        <td class="py-5 border text-center font-bold p-4" contenteditable="true">YY-853581</td>
-                        <td class="py-5 border text-center font-bold p-4" contenteditable="true">Notebook Basic</td>
-                        <td class="py-5 border text-center font-bold p-4" contenteditable="true">$ 299</td>
-                    </tr>
                 </tbody>
             </table>
           </div>

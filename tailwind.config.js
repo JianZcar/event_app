@@ -1,4 +1,5 @@
 module.exports = {
+  // darkMode: false,
   content: ["./app/**/*.{php,html,js}"],
   theme: {
     extend: {
@@ -41,5 +42,4 @@ module.exports = {
   },
   variants: {},
   plugins: [],
-  dark: 'class',  
 };
