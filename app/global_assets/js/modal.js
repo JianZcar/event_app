@@ -1,6 +1,5 @@
-
 function modal_DeleteAccount(username) {
-    const modalHTML = `
+  const modalHTML = `
         <div
             id="modal-delete-account"
             data-dialog-backdrop="sign-in-dialog"
@@ -29,42 +28,24 @@ function modal_DeleteAccount(username) {
                 </div>
             </div>
         </div>
-    `
+    `;
 
-    // How about show and hide
-    document.body.insertAdjacentHTML('beforeend', modalHTML);
+  // How about show and hide
+  document.body.insertAdjacentHTML("beforeend", modalHTML);
 
-    let modal_btn_close = document.querySelector('#close-dialog-btn');
-    // let modal_btn_delete = document.querySelector('#delete-account-btn');
-    let modal_dialog = document.querySelector('#modal-delete-account');
+  let modal_btn_close = document.querySelector("#close-dialog-btn");
+  // let modal_btn_delete = document.querySelector('#delete-account-btn');
+  let modal_dialog = document.querySelector("#modal-delete-account");
 
-    modal_btn_close.addEventListener('click', function() {
-        modal_dialog.classList.toggle('pointer-events-none');
-        modal_dialog.classList.toggle('opacity-0');
-        modal_dialog.classList.toggle('hidden');
-    });
-
+  modal_btn_close.addEventListener("click", function () {
+    modal_dialog.classList.toggle("pointer-events-none");
+    modal_dialog.classList.toggle("opacity-0");
+    modal_dialog.classList.toggle("hidden");
+  });
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 function modal_DeleteAccount(username) {
-
-    let modal_dialog_html = `
+  let modal_dialog_html = `
         <div
             id="modal-delete-account"
             data-dialog-backdrop="sign-in-dialog"
@@ -95,19 +76,19 @@ function modal_DeleteAccount(username) {
         </div>
     `;
 
-    document.body.insertAdjacentHTML('beforeend', modal_dialog_html);
+  document.body.insertAdjacentHTML("beforeend", modal_dialog_html);
 
-    let modal_btn_open = document.querySelector('#open-dialog-btn');
-    let modal_dialog = document.querySelector('#modal-delete-account');
-    let modal_btn_close = document.querySelector('#close-dialog-btn');
-    
-    modal_btn_open.addEventListener('click', function() {
-        modal_dialog.classList.toggle('pointer-events-none');
-        modal_dialog.classList.toggle('opacity-0');
-    });
-    
-    modal_btn_close.addEventListener('click', function() {
-        modal_dialog.classList.toggle('pointer-events-none');
-        modal_dialog.classList.toggle('opacity-0');
-    });
-};
+  let modal_btn_open = document.querySelector("#open-dialog-btn");
+  let modal_dialog = document.querySelector("#modal-delete-account");
+  let modal_btn_close = document.querySelector("#close-dialog-btn");
+
+  modal_btn_open.addEventListener("click", function () {
+    modal_dialog.classList.toggle("pointer-events-none");
+    modal_dialog.classList.toggle("opacity-0");
+  });
+
+  modal_btn_close.addEventListener("click", function () {
+    modal_dialog.classList.toggle("pointer-events-none");
+    modal_dialog.classList.toggle("opacity-0");
+  });
+}

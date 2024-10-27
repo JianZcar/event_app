@@ -1,17 +1,17 @@
 <?php
-  session_start();
-  include "./../../proj_info.php";
+session_start();
+include "./../../proj_info.php";
 
-  $page_name = "Calendar";
-  $page_full_name = "$page_name | $proj_name";
+$page_name = "Calendar";
+$page_full_name = "$page_name | $proj_name";
 
-  // Message Control
-  if (isset($_SESSION['msg_account_announce'])) {
-    $msg_account_announce = $_SESSION['msg_account_announce'];
-    unset($_SESSION['msg_account_announce']);
-  }
+// Message Control
+if (isset($_SESSION['msg_account_announce'])) {
+  $msg_account_announce = $_SESSION['msg_account_announce'];
+  unset($_SESSION['msg_account_announce']);
+}
 
-  $sql_users = <<<SQL
+$sql_users = <<<SQL
   SELECT 
     users.id,
     users.username, 
@@ -28,15 +28,16 @@
   ORDER BY 
     users.id;
   SQL;
-  // echo $sql_users;
-  $result_users = $db_conn->query($sql_users);
+// echo $sql_users;
+$result_users = $db_conn->query($sql_users);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?php echo $page_full_name?></title>
+  <title><?php echo $page_full_name ?></title>
 
   <!-- <link href="./../global_assets/css/panel.css" rel="stylesheet"> -->
   <!-- <link href="./../global_assets/css/sidebar.css" rel="stylesheet"> -->
@@ -51,7 +52,7 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.20.1/moment.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.9.0/fullcalendar.min.js"></script>
   <!-- Bootstrap CSS and JS -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"/>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" />
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 
   <!-- Your custom CSS (make sure this is loaded after the external CSS) -->
@@ -63,20 +64,20 @@
 
   <!-- Left Sidebar -->
   <div class="slide-panel" id="sidebar-content">
-    <?php include './../global_components/sidebar.php';?>
+    <?php include './../global_components/sidebar.php'; ?>
   </div>
 
   <!-- Rest is main content -->
   <div class="flex flex-col w-screen max-w-screen min-h-screen">
 
     <!-- Header -->
-    <header class="flex flex-row bg-blue-500 text-white p-1 btn-slide">
+    <header class="navigator-header btn-slide">
       <a class="p-2 text-2xl hover-action" id="btn-menu-list" onclick="slideOpen()"><i class='bx bx-menu'></i></a>
-      <h1 class="p-2 text-2xl"><?php echo $page_full_name?></h1>
+      <h1 class="p-2 text-2xl"><?php echo $page_full_name ?></h1>
     </header>
 
     <!-- Main Object -->
-    <main class="flex flex-col w-full h-full m-h-screen">
+    <main class="main-content">
 
       <div class="p-base">
         <h1 class="p-title">Welcome back, Administrator!</h1>
@@ -110,7 +111,7 @@
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white p-4 p-footer" id="p-footer">
-      <p>All rights reserved <?php echo $proj_current_year?></p>
+      <p>All rights reserved <?php echo $proj_current_year ?></p>
     </footer>
 
     <script src="./../global_assets/js/sidebar.js"></script>
@@ -118,4 +119,5 @@
   </div>
 
 </body>
+
 </html>

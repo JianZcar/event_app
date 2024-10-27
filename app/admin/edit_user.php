@@ -71,6 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -80,6 +81,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
   <link href="./../global_assets/css/boxicons.min.css" rel='stylesheet'>
 </head>
+
 <body class="flex flex-row min-w-screen">
 
   <!-- Left Sidebar -->
@@ -90,13 +92,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <!-- Main Content -->
   <div class="flex flex-col w-screen max-w-screen min-h-screen">
     <!-- Header -->
-    <header class="flex flex-row bg-blue-500 text-white p-1 btn-slide">
+    <header class="navigator-header btn-slide">
       <a class="p-2 text-2xl hover-action" id="btn-menu-list" onclick="slideOpen()"><i class='bx bx-menu'></i></a>
       <h1 class="p-2 text-2xl"><?php echo $page_full_name ?></h1>
     </header>
 
     <!-- Main Object -->
-    <main class="flex flex-col w-full h-full m-h-screen">
+    <main class="main-content">
       <div class="p-base">
         <h1 class="p-title">Welcome back, Administrator!</h1>
       </div>
@@ -155,4 +157,5 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   </div>
 
 </body>
+
 </html>

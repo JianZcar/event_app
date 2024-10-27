@@ -1,17 +1,17 @@
 <?php
-  session_start();
-  include "./../../proj_info.php";
+session_start();
+include "./../../proj_info.php";
 
-  $page_name = "User Management";
-  $page_full_name = "$page_name | $proj_name";
+$page_name = "User Management";
+$page_full_name = "$page_name | $proj_name";
 
-  // Message Control
-  if (isset($_SESSION['msg_account_announce'])) {
-    $msg_account_announce = $_SESSION['msg_account_announce'];
-    unset($_SESSION['msg_account_announce']);
-  }
+// Message Control
+if (isset($_SESSION['msg_account_announce'])) {
+  $msg_account_announce = $_SESSION['msg_account_announce'];
+  unset($_SESSION['msg_account_announce']);
+}
 
-  $sql_users = <<<SQL
+$sql_users = <<<SQL
   SELECT 
       users.id,
       users.username, 
@@ -28,15 +28,16 @@
   ORDER BY 
       users.id;
   SQL;
-  // echo $sql_users;
-  $result_users = $db_conn->query($sql_users);
+// echo $sql_users;
+$result_users = $db_conn->query($sql_users);
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?php echo $page_full_name?></title>
+  <title><?php echo $page_full_name ?></title>
   <link href="../global_assets/css/output.css" rel="stylesheet">
   <link href="./../global_assets/css/global_footer.css" rel="stylesheet">
   <!-- <link href="./../global_assets/css/panel.css" rel="stylesheet"> -->
@@ -47,64 +48,64 @@
 
 <body class="flex flex-row min-w-screen">
 
-<!-- Left Sidebar -->
-<div class="slide-panel" id="sidebar-content">
-  <?php include './../global_components/sidebar.php';?>
-</div>
+  <!-- Left Sidebar -->
+  <div class="slide-panel" id="sidebar-content">
+    <?php include './../global_components/sidebar.php'; ?>
+  </div>
 
-<!-- Rest is main content -->
+  <!-- Rest is main content -->
   <!-- Main Content -->
-  <div class="flex flex-col w-screen max-w-screen min-h-screen">
+  <div class="main-content">
     <!-- Header -->
-    <header class="flex flex-row bg-blue-500 text-white p-1 btn-slide">
+    <header class="navigator-header">
       <a class="p-2 text-2xl hover-action" id="btn-menu-list" onclick="slideOpen()"><i class='bx bx-menu'></i></a>
-      <h1 class="p-2 text-2xl"><?php echo $page_full_name?></h1>
+      <h1 class="p-2 text-2xl"><?php echo $page_full_name ?></h1>
     </header>
 
     <!-- Main Object -->
     <main class="flex flex-col w-full h-full m-h-screen">
 
-        <div class="p-base">
-            <h1 class="p-title" >Welcome back, Administrator!</h1>
+      <div class="p-base">
+        <h1 class="p-title">Welcome back, Administrator!</h1>
+      </div>
+
+      <div class="p-base flex flex-row justify-between items-center">
+        <p>Here's a list of users.</p>
+        <button class="btn-accept-1" onclick="window.location.href='./add_user.php'">Add</button>
+      </div>
+
+      <div class="p-base">
+        <div class="flex flex-row pb-2 space-x-4">
+          <input class="p-textbox" placeholder="Type your name..">
+          <button class="btn-search-1">Search</button>
         </div>
 
-        <div class="p-base flex flex-row justify-between items-center">
-          <p>Here's a list of users.</p>
-          <button class="btn-accept-1" onclick="window.location.href='./add_user.php'">Add</button>
-        </div>
+        <!-- User's Table -->
+        <div class="relative overflow-hidden shadow-md rounded-lg" bis_skin_checked="1">
+          <table class="table-fixed w-full text-left">
+            <thead class="uppercase bg-blue-500 text-[#e5e7eb]">
+              <tr>
+                <td class="py-1 border text-center p-4">Users</td>
+                <td class="py-1 border text-center p-4">STATUS</td>
+                <td class="py-1 border text-center p-4k">ACTIONS</td>
+              </tr>
+            </thead>
+            <tbody class="bg-white text-gray-500">
+              <?php
+              if ($result_users->num_rows > 0) {
+                while ($row = $result_users->fetch_assoc()) {
+                  $user_id = $row['id'];
+                  $username = $row['username'];
+                  $role_name = $row['role_name'];
+                  $color = $row['color'];
+                  $bg_color = $row['bg_color'];
+                  $is_active = $row['is_active'];
 
-        <div class="p-base">
-          <div class="flex flex-row pb-2 space-x-4">
-            <input class="p-textbox" placeholder="Type your name..">
-            <button class="btn-search-1">Search</button>
-          </div>
+                  $status = $is_active == 1 ? "Active" : "Inactive";
+                  $status_color = $is_active == 1 ? "text-green-500" : "text-red-500";
+                  $status_icon = $is_active == 1 ? "bx-check" : "bx-x";
 
-          <!-- User's Table -->
-          <div class="relative overflow-hidden shadow-md rounded-lg" bis_skin_checked="1">
-            <table class="table-fixed w-full text-left">
-                <thead class="uppercase bg-blue-500 text-[#e5e7eb]">
-                    <tr>
-                        <td class="py-1 border text-center  p-4" contenteditable="true">Users</td>
-                        <td class="py-1 border text-center  p-4" contenteditable="true">STATUS</td>
-                        <td class="py-1 border text-center  p-4" contenteditable="true">ACTIONS</td>
-                    </tr>
-                </thead>
-                <tbody class="bg-white text-gray-500 bg-[#FFFFFF] text-[#6b7280]" style="background-color: #FFFFFF; color: #6b7280;">
-                  <?php
-                    if ($result_users->num_rows > 0) {
-                      while ($row = $result_users->fetch_assoc()) {
-                        $user_id = $row['id'];
-                        $username = $row['username'];
-                        $role_name = $row['role_name'];
-                        $color = $row['color'];
-                        $bg_color = $row['bg_color'];
-                        $is_active = $row['is_active'];
-
-                        $status = $is_active == 1 ? "Active" : "Inactive";
-                        $status_color = $is_active == 1 ? "text-green-500" : "text-red-500";
-                        $status_icon = $is_active == 1 ? "bx-check" : "bx-x";
-
-                        echo <<<HTML
+                  echo <<<HTML
                         <tr class="py-5">
                           <td class="flex flex-row items-center py-5 border text-center font-bold p-4">
                             <img class="w-16 h-16 rounded-full mr-5 border-2 border-black" src="./../global_assets/img/default_user.png" alt=""$username>
@@ -113,7 +114,7 @@
                           <td class="py-5 border text-center font-bold p-4">
                             <span class="$status_color">
                               <i class='bx $status_icon'></i>
-                              $status
+                              <span>$status</span>
                             </span>
                           </td>
                           <td class="py-5 border text-center font-bold p-4">
@@ -122,23 +123,24 @@
                           </td>
                         </tr>
                         HTML;
-                      }
-                    }
-                  ?>
-                </tbody>
-            </table>
-          </div>
-
+                }
+              }
+              ?>
+            </tbody>
+          </table>
         </div>
+
+      </div>
     </main>
 
     <!-- Footer -->
     <footer class="bg-gray-800 text-white p-4 p-footer" id="p-footer">
-      <p>All rights reserved <?php echo $proj_current_year?></p>
+      <p>All rights reserved <?php echo $proj_current_year ?></p>
     </footer>
 
     <script src="./../global_assets/js/sidebar.js"></script>
   </div>
 
 </body>
+
 </html>

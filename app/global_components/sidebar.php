@@ -2,20 +2,19 @@
 <div class="sidebar-top">
   <div class="text-4xl p-4 w-full flex flex-row">
     <i class='bx bxs-calendar-event'></i>
-    <span class="set-hide text-xl"><?php echo $proj_name?></span>
+    <span class="set-hide text-xl"><?php echo $proj_name ?></span>
   </div>
 </div>
 
 <div class="slide-profile">
-    <img class="slide_profile_img" src="./../global_assets/img/default_user.png" alt="me">
-    <div class="sidebar-profile-user set-hide">
-      <p class="bold">Marc Buday</p>
-      <p class="" >Admin</p>
-    </div>
+  <img class="slide_profile_img" src="./../global_assets/img/default_user.png" alt="me">
+  <div class="sidebar-profile-user set-hide">
+    <p class="bold">Marc Buday</p>
+    <p class="">Admin</p>
+  </div>
 </div>
 
-<ul class="sidebar-menu">
-  
+<ul class="bg-inherit text-slate-900 dark:bg-inherit dark:text-white">
 
   <li class="slide-list">
     <a class="w-full flex flex-direction" href="./index.php">

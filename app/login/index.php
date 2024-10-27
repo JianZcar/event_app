@@ -35,10 +35,11 @@ if (isset($db_conn)) {
 ?>
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?php echo $page_full_name?></title>
+  <title><?php echo $page_full_name ?></title>
   <link href="../global_assets/css/output.css" rel="stylesheet">
   <link href="./../global_assets/css/global_footer.css" rel="stylesheet">
   <!-- <link href="./../global_assets/css/panel.css" rel="stylesheet"> -->
@@ -49,52 +50,53 @@ if (isset($db_conn)) {
 
 <body class="flex flex-row min-w-screen">
 
-<!-- Rest is main content -->
-<!-- Main Content -->
-<div class="flex flex-col w-screen max-w-screen min-h-screen">
-  <!-- Header -->
-  <header class="flex flex-row bg-blue-500 text-white p-1 btn-slide">
-    <a class="p-2 text-2xl hover-action" id="btn-menu-list" onclick="slideOpen()"><i class='bx bx-menu'></i></a>
-    <h1 class="p-2 text-2xl"><?php echo $page_full_name?></h1>
-  </header>
+  <!-- Rest is main content -->
+  <!-- Main Content -->
+  <div class="p-login">
+    <!-- Header -->
+    <header class="flex flex-row bg-blue-500 text-white p-1 btn-slide">
+      <a class="p-2 text-2xl hover-action" id="btn-menu-list" onclick="slideOpen()"><i class='bx bx-menu'></i></a>
+      <h1 class="p-2 text-2xl"><?php echo $page_full_name ?></h1>
+    </header>
 
-  <!-- Main Object -->
-  <main class="flex flex-col w-full h-full m-h-screen">
+    <!-- Main Object -->
+    <main class="main-content">
 
-    <div class="p-base">
-      <div class="flex flex-col w-full md:w-1/2 xl:w-2/5 2xl:w-2/5 3xl:w-1/3 mx-auto p-8 md:p-10 2xl:p-12 3xl:p-14 bg-[#ffffff] rounded-2xl shadow-xl">
-        <form class="flex flex-col" method="post">
-          <div class="pb-6">
-            <label for="username" class="block mb-2 text-sm font-medium text-[#111827]">Username</label>
-            <div class="relative text-gray-400">
-              <input type="text" name="username" id="username" class="p-textbox" placeholder="Username" autocomplete="off" value="">
+      <div class="p-base">
+        <div class="flex flex-col w-full md:w-1/2 xl:w-2/5 2xl:w-2/5 3xl:w-1/3 mx-auto p-8 md:p-10 2xl:p-12 3xl:p-14 bg-[#ffffff] rounded-2xl shadow-xl">
+          <form class="flex flex-col" method="post">
+            <div class="pb-6">
+              <label for="username" class="block mb-2 text-sm font-medium text-[#111827]">Username</label>
+              <div class="relative text-gray-400">
+                <input type="text" name="username" id="username" class="p-textbox" placeholder="Username" autocomplete="off" value="">
+              </div>
             </div>
-          </div>
 
-          <div class="pb-6">
-            <label for="password" class="block mb-2 text-sm font-medium text-[#111827]">Password</label>
-            <div class="relative text-gray-400">
-              <input type="password" name="password" id="password" class="p-textbox" autocomplete="new-password" placeholder="Password">
+            <div class="pb-6">
+              <label for="password" class="block mb-2 text-sm font-medium text-[#111827]">Password</label>
+              <div class="relative text-gray-400">
+                <input type="password" name="password" id="password" class="p-textbox" autocomplete="new-password" placeholder="Password">
+              </div>
             </div>
-          </div>
-          <div class="text-sm">
-            <a href="./forgot_password.php" class="text-blue-600 hover:underline font-semibold">
-              Forgot your password?
-            </a>
-          </div>
-          <button type="submit" class="btn-post-accept-1">Login</button>
-          <p class="text-gray-800 text-sm !mt-8 text-center">Don't have an account? <a href="./register.php" class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Register here</a></p>
-        </form>
-      </div>
-  </main>
+            <div class="text-sm">
+              <a href="./forgot_password.php" class="text-blue-600 hover:underline font-semibold">
+                Forgot your password?
+              </a>
+            </div>
+            <button type="submit" class="btn-post-accept-1">Login</button>
+            <p class="text-gray-800 text-sm !mt-8 text-center">Don't have an account? <a href="./register.php" class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Register here</a></p>
+          </form>
+        </div>
+    </main>
 
-  <!-- Footer -->
-  <footer class="bg-gray-800 text-white p-4 p-footer" id="p-footer">
-    <p>All rights reserved <?php echo $proj_current_year?></p>
-  </footer>
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white p-4 p-footer" id="p-footer">
+      <p>All rights reserved <?php echo $proj_current_year ?></p>
+    </footer>
 
-  <script src="./../global_assets/js/sidebar.js"></script>
-</div>
+    <script src="./../global_assets/js/sidebar.js"></script>
+  </div>
 
 </body>
+
 </html>
