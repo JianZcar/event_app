@@ -1,4 +1,7 @@
 ./app_bak
+node_modules/*
+node_modules*
+
 /node_modules/.bin/cssesc
 /node_modules/.bin/cssesc.cmd
 /node_modules/.bin/cssesc.ps1
