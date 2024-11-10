@@ -102,6 +102,7 @@ if (isset($db_conn)) {
                         <a type="submit" class="btn-post-danger-1" href="./user_management.php">Cancel</a>
                     </form>
                 </div>
+            </div>
         </main>
 
         <!-- Footer -->

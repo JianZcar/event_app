@@ -1,90 +1,156 @@
 <?php
-  include "./../../proj_info.php";
+include "./../../proj_info.php";
 
+function get_user_email($user_id) {
+	/**
+	 * Get the email of a user.
+	 *
+	 * @param int $user_id User ID
+	 * @return string Email address
+	 */
+	global $db_conn;
+	$sql_cmd = "SELECT 
+					email
+				FROM
+					user_infos
+				WHERE
+					id = ?";
+	$stmt = $db_conn->prepare($sql_cmd);
+	$stmt->bind_param("i", $user_id);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	$row = $result->fetch_assoc();
+	return $row['email'];
+}
+function session_auth_daemon(): void {
+	/**
+	 * Starts a session and checks if the user is logged in.
+	 */
+	if (!isset($_SESSION['user_id'])) {
+		session_announce("You need to login first", true, "/app/login/");
+	} else {
+		// Check role
+		if ($_SESSION['user_role'] != 1) {
+			session_announce("You are not authorized to access this page", true, "/app/login/");
+			session_unset();
+			session_destroy();
+		}
+	}
+}
 
-  // Check the username if there's exists when edit mode section
-  function check_username($conn, $id, $username) {
-    // Prepare the SQL statement using heredoc syntax
-    $sql_cmd = <<<SQL
-    SELECT id, username 
-      FROM users 
-      WHERE username = '{$username}'
-    SQL;
+function change_password($conn, $id, $new_password) {
+	/**
+	 * Changes a user's password.
+	 *
+	 * @param mysqli $conn Database connection
+	 * @param int $id User ID
+	 * @param string $new_password New password
+	 * @return bool TRUE on success, FALSE on failure
+	 */
 
-    $result = $conn->query($sql_cmd);
-    $query = $result->fetch_assoc();
+}
+// Check the username if there's exists when edit mode section
+function check_username(mysqli $conn, int $id, string $username): bool {
+	/**
+	 * Checks if a username exists in the database.
+	*
+	* @param mysqli $conn Database connection
+	* @param int $id User ID
+	* @param string $username Username to check
+	* @return bool TRUE if username does not exist, FALSE otherwise
+	*/
 
-    // Check if the username is exists
-    if ($query && $username == $query["username"] && $id != $query["id"]) {
-      return FALSE;
-    } else {
-      return TRUE;
-    }
-  }
+	$sql_cmd = "SELECT id, username FROM users WHERE username = ?";
 
-  function session_announce($msg, $goto_require, $goto_php) {
-    // $msg : Message to be displayed
-    // $goto_require : If the redirection is required just say TRUE.
-    // $goto_php : The redirection page
+	$stmt = $conn->prepare($sql_cmd);
+	$stmt->bind_param("s", $username);
+	$stmt->execute();
+	$result = $stmt->get_result();
+	$query = $result->fetch_assoc();
 
-    $_SESSION['msg_account_announce'] = $msg;
-    if ($goto_require) {
-      header("Location: $goto_php");
-    } 
-  }
+	if ($query && $username === $query["username"] && $id !== $query["id"]) {
+		return false;
+	} else {
+		return true;
+	}
+}
 
-  function password_encoder($password) {
-    // $password : Encode the password to be hashed
-    return password_hash($password, PASSWORD_DEFAULT);
-  }
+function session_announce(string $msg, bool $goto_require, string $goto_php): void {
+	/**
+	 * Sets a session announcement message and redirects if required.
+	 *
+	 * @param string $msg Announcement message
+	 * @param bool $goto_require Whether redirection is required
+	 * @param string $goto_php Redirection page URL
+	 */
 
-  function sql_execute($conn, $sql) {
-    // $conn : Database connection
-    // $sql : SQL query command to be executed
+	$_SESSION['msg_account_announce'] = $msg;
 
-    $result = $conn->query($sql);
-    if ($result->num_rows > 0) {
-      return $result;
-    } else {
-      return FALSE;
-    }
-  }
+	if ($goto_require) {
+		header("Location: $goto_php");
+		exit();
+	}
+}
 
-  function exec_login($conn, $username, $password) {
-    // $conn : Database connection
-    // $username : Username
-    // $password : Password
+function password_encoder(string $password): string {
+	/**
+	 * Hashes a password using the default algorithm.
+	 *
+	 * @param string $password Password to be hashed
+	 * @return string Hashed password
+	 */
+	return password_hash($password, PASSWORD_DEFAULT);
+}
 
-    // Check if the username and password is correct
-    $sql_cmd = <<<SQL
-    SELECT id, username, passwd, is_active, user_role
-      FROM users
-      WHERE username = '{$username}'
-    SQL;
+function sql_execute(mysqli $conn, string $sql): mysqli_result|false {
+	/**
+	 * Executes an SQL query and returns the result.
+	 *
+	 * @param mysqli $conn Database connection
+	 * @param string $sql SQL query command
+	 * @return mysqli_result|false Result or FALSE on failure
+	 */
+	$result = $conn->query($sql);
+	return ($result && $result->num_rows > 0) ? $result : false;
+}
 
-    $result = sql_execute($conn, $sql_cmd);
-    if ($result) {
-      $row = $result->fetch_assoc();
-      if (password_verify($password, $row['passwd'])) {
+function exec_login(mysqli $conn, string $username, string $password): void {
+	/**
+	 * Executes login functionality.
+	 *
+	 * @param mysqli $conn Database connection
+	 * @param string $username Username
+	 * @param string $password Password
+	 */
+	$sql_cmd = "SELECT id, username, passwd, is_active, user_role 
+				FROM users 
+				WHERE username = ?";
 
-        // I will add soon if admin or not (aceday)
+	$result = sql_execute($conn, $sql_cmd, [$username]);
 
-        $_SESSION['user_id'] = $row['id'];
-        $_SESSION['username'] = $row['username'];
-        $_SESSION['user_role'] = $row['user_role'];
-        $_SESSION['is_active'] = $row['is_active'];
-        header("Location: index.php");
-      } else {
-        session_announce("Username or password is incorrect.", TRUE, "/");
-      }
-    } else {
-      session_announce("Username or password is incorrect.", TRUE, "/");
-    }
-  }
+	if ($result) {
+		$row = $result->fetch_assoc();
+		if (password_verify($password, $row['passwd'])) {
+			$_SESSION['user_id'] = $row['id'];
+			$_SESSION['username'] = $row['username'];
+			$_SESSION['user_role'] = $row['user_role'];
+			$_SESSION['is_active'] = $row['is_active'];
+			header("Location: index.php");
+			exit;
+		} else {
+			session_announce("Invalid credentials.", true, "/");
+		}
+	} else {
+		session_announce("Invalid credentials.", true, "/");
+	}
+}
 
-  function exec_logout() {
-    // Log out the user
-    session_destroy();
-    header("Location: /");
-  }
-?>
+function exec_logout(): void {
+	/**
+	 * Logs out the user and redirects to the homepage.
+	 */
+	session_unset();
+	session_destroy();
+	header("Location: /");
+	// exit;
+}

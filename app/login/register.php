@@ -1,9 +1,16 @@
 <?php
 session_start();
-include "./../../proj_info.php";
+include_once "./../global_components/base.php";
+web_start();
 
+// Custom components
+include_once "./components/module.php";
+include_once "./../global_components/account.php";
+include_once "./../login/components/exec_auth.php";
+
+// Page Info
 $page_name = "Register";
-$page_full_name = "$page_name | $proj_name";
+$page_full_name = page_full_name();
 
 // Message Control
 if (isset($_SESSION['msg_account_announce'])) {
@@ -11,88 +18,51 @@ if (isset($_SESSION['msg_account_announce'])) {
   unset($_SESSION['msg_account_announce']);
 }
 
-$sql_users = <<<SQL
-SELECT 
-  users.id,
-  users.username, 
-  users.is_active, 
-  user_roles.role_name,
-  user_roles.color,
-  user_roles.bg_color
-FROM 
-  users 
-INNER JOIN 
-  user_roles 
-ON 
-  users.user_role = user_roles.id
-ORDER BY 
-  users.id;
-SQL;
-// echo $sql_users;
-if (isset($db_conn)) {
-  $result_users = $db_conn->query($sql_users);
-}
+// Register execute
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+  $username = $_POST["username"];
+  $password = $_POST["password1"];
+  $password_confirm = $_POST["password2"];
+  $email = $_POST["email"];
+  
+  if ($password == $password_confirm) {
+    if (register_auth($username, $password, $email)) {
+      session_announce("Account created successfully", true, "index.php");
+      // $_SESSION['msg_account_announce'] = "Account created successfully";
+    } else {
+      session_announce("Account creation failed", true, "register.php");
+      // $_SESSION['msg_account_announce'] = "Account creation failed";
+    }
+  } else {
+    session_announce("Password does not match", true, "register.php");
+    // $_SESSION['msg_account_announce'] = "Password does not match";
+  }
+} 
 ?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <?php global_style(); ?>
   <title><?php echo $page_full_name ?></title>
-  <link href="../global_assets/css/output.css" rel="stylesheet">
-  <link href="./../global_assets/css/global_footer.css" rel="stylesheet">
-  <!-- <link href="./../global_assets/css/panel.css" rel="stylesheet"> -->
-  <!-- <link href="./../global_assets/css/sidebar.css" rel="stylesheet"> -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <?php global_first_js(); ?>
 </head>
 
 <body class="flex flex-row min-w-screen">
-
-  <!-- Rest is main content -->
-  <!-- Main Content -->
   <div class="main-content">
-    <!-- Header -->
-    <header class="flex flex-row bg-blue-500 text-white p-1 btn-slide">
-      <a class="p-2 text-2xl hover-action" id="btn-menu-list" onclick="slideOpen()"><i class='bx bx-menu'></i></a>
-      <h1 class="p-2 text-2xl"><?php echo $page_full_name ?></h1>
-    </header>
-
-    <!-- Main Object -->
+    <?php login_navbar(); ?>
+    <?php
+      if (isset($msg_account_announce)) {
+        $message = $msg_account_announce;
+        system_message($message);
+        unset($msg_account_announce);
+      }?>
     <main class="flex flex-col w-full h-full m-h-screen">
-
-      <div class="p-base">
-        <div class="flex flex-col w-full md:w-1/2 xl:w-2/5 2xl:w-2/5 3xl:w-1/3 mx-auto p-8 md:p-10 2xl:p-12 3xl:p-14 bg-[#ffffff] rounded-2xl shadow-xl">
-          <form class="flex flex-col" method="post">
-            <div class="pb-6">
-              <label for="username" class="block mb-2 text-sm font-medium text-[#111827]">Username</label>
-              <div class="relative text-gray-400">
-                <input type="text" name="username" id="username" class="p-textbox" placeholder="Username" autocomplete="off" value="">
-              </div>
-            </div>
-
-            <div class="pb-6">
-              <label for="password" class="block mb-2 text-sm font-medium text-[#111827]">Password</label>
-              <div class="relative text-gray-400">
-                <input type="password" name="password" id="password" class="p-textbox" autocomplete="new-password" placeholder="Password">
-              </div>
-            </div>
-
-            <button type="submit" class="btn-post-accept-1">Add User</button>
-            <p class="text-gray-800 text-sm !mt-8 text-center">Already have an account? <a href="./index.php" class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Login here</a></p>
-          </form>
-        </div>
+      <?php form_register(); ?>
     </main>
 
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white p-4 p-footer" id="p-footer">
-      <p>All rights reserved <?php echo $proj_current_year ?></p>
-    </footer>
-
-    <script src="./../global_assets/js/sidebar.js"></script>
+    <?php global_footer($proj_name, $proj_version, $proj_author, $proj_current_year); ?>
+    <?php global_last_js(); ?>
   </div>
-
 </body>
-
 </html>

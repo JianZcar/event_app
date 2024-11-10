@@ -85,12 +85,12 @@
 
   /* Button */
   .btn-common {
-    @apply h-16 w-48 justify-center rounded-lg bg-blue-500 text-lg font-bold text-[#ffffff];
+    @apply h-16 w-48 justify-center rounded-lg bg-blue-500 text-center text-lg font-bold text-white;
   }
 
   /* Textbox */
   .p-textbox {
-    @apply block w-full rounded-lg rounded-l-lg border border-gray-300 bg-gray-50 p-1 px-3 py-2 text-gray-600 ring ring-transparent focus:border-transparent focus:outline-none focus:ring-1 focus:ring-gray-400 sm:text-sm;
+    @apply block w-full rounded-lg rounded-l-lg border border-blue-300 bg-gray-50 p-1 px-3 py-2 text-gray-600 ring ring-transparent focus:border-transparent focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm;
   }
 
   /* Button */
@@ -98,6 +98,11 @@
     @apply w-full text-white bg-blue-500 focus:outline-none 
     focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center mb-6;
   } */
+
+  /* FORM */
+  .p-form-1 {
+    @apply 3xl:w-1/3 3xl:p-14 mx-auto flex w-full flex-col rounded-2xl bg-[#ffffff] p-8 shadow-xl md:w-1/2 md:p-10 xl:w-2/5 2xl:w-2/5 2xl:p-12;
+  }
 
   /* POST */
   .btn-post-common-1 {
@@ -150,5 +155,15 @@
   /* Login */
   .p-login {
     @apply flex min-h-screen w-screen max-w-screen-lg flex-col dark:bg-slate-900 dark:text-slate-50;
+  }
+
+  /* Pagination */
+  .paginate-btn {
+    @apply mx-1 border-2 border-slate-950 bg-slate-600 p-1 dark:border-white;
+  }
+
+  /* Calendar */
+  .upcoming-list {
+    @apply h-full max-h-12 w-full rounded-xl bg-gray-300 p-2;
   }
 }

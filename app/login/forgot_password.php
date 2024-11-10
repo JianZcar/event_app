@@ -54,7 +54,7 @@ if (isset($db_conn)) {
   <!-- Main Content -->
   <div class="flex flex-col w-screen max-w-screen min-h-screen">
     <!-- Header -->
-    <header class="flex flex-row bg-blue-500 text-white p-1 btn-slide">
+    <header class="navigator-header btn-slide">
       <a class="p-2 text-2xl hover-action" id="btn-menu-list" onclick="slideOpen()"><i class='bx bx-menu'></i></a>
       <h1 class="p-2 text-2xl"><?php echo $page_full_name ?></h1>
     </header>
@@ -72,7 +72,7 @@ if (isset($db_conn)) {
               </div>
             </div>
 
-            <button type="submit" class="btn-post-accept-1">Send Request</button>
+            <button type="submit" class="btn-post-accept-1">Send Password</button>
             <p class="text-gray-800 text-sm !mt-8 text-center">Want back to login? <a href="./index.php" class="text-blue-600 hover:underline ml-1 whitespace-nowrap font-semibold">Login here</a></p>
           </form>
         </div>

@@ -1,36 +1,42 @@
-<?php              
+<?php
 require './../../proj_info.php';
-$display_query = "SELECT * FROM event_data";             
-$results = mysqli_query($db_conn,$display_query);   
-$count = mysqli_num_rows($results);
 
-if($count>0) 
-{
-  $data_arr=array();
-    $i=1;
+global $db_conn;
+$sql_events = <<<SQL
+SELECT 
+  id,
+  subject_name,
+  content,
+  start_datetime,
+  end_datetime
+FROM 
+  event_posts;
+SQL;
 
-  while($data_row = mysqli_fetch_array($results, MYSQLI_ASSOC)) {	
+$result_events = $db_conn->query($sql_events);
 
-  $data_arr[$i]['event_id'] = $data_row['event_id'];
-  $data_arr[$i]['title'] = $data_row['event_name'];
-  $data_arr[$i]['start'] = date("Y-m-d", strtotime($data_row['event_start_date']));
-  $data_arr[$i]['end'] = date("Y-m-d", strtotime($data_row['event_end_date']));
-	$data_arr[$i]['color'] = '#'.substr(uniqid(),-6); // 'green'; pass colour name
-  $i++;
-  }
+// Convert events to array
+$result_events = $result_events->fetch_all(MYSQLI_ASSOC);
 
+// Convert datetime to ISO8601 format
+foreach ($result_events as $key => $event) {
+  $result_events[$key]['start_datetime'] = date('c', strtotime($event['start_datetime']));
+  $result_events[$key]['end_datetime'] = date('c', strtotime($event['end_datetime']));
+}
+
+// Prepare data for JSON response
+if (count($result_events) > 0) {
   $data = array(
-                'status' => true,
-                'msg' => 'successfully!',
-                'data' => $data_arr
+    'status' => true,
+    'msg' => 'successfully!',
+    'data' => $result_events
+  );
+} else {
+  $data = array(
+    'status' => false,
+    'msg' => 'Error!'
   );
 }
-else
-{
-  $data = array(
-                'status' => false,
-                'msg' => 'Error!'				
-            );
-}
+
 echo json_encode($data);
 ?>
