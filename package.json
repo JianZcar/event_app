@@ -1,8 +1,18 @@
 {
   "devDependencies": {
-    "tailwindcss": "^3.4.13"
+    "prettier": "3.3.3",
+    "prettier-plugin-tailwindcss": "^0.6.8",
+    "tailwindcss": "^3.4.14"
   },
   "scripts": {
-    "tailwind_build": "npx tailwindcss -i app/global_assets/css/input.css -o app/global_assets/css/output.css --watch\n"
+    "tailwind_build": "npx tailwindcss -i app/global_assets/css/input.css -o app/global_assets/css/output.css --watch\n",
+    "setup_phpmailer": "composer require phpmailer/phpmailer",
+    "setup_oath2gmail": "composer require league/oauth2-google"
+  },
+  "dependencies": {
+    "fullcalendar": "^6.1.15",
+    "jquery": "^3.7.1",
+    "react-icons": "^5.3.0",
+    "tinymce": "^7.4.1"
   }
 }
