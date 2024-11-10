@@ -12,6 +12,8 @@ vendor
 
 proj_info.php
 ./proj_info.php
+./postman_go
+./postman_go/*
 
 /node_modules/.bin/cssesc
 /node_modules/.bin/cssesc.cmd
