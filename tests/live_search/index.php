@@ -1,5 +1,5 @@
 <?php
-include "./../../proj_info.php";
+include_once "./../../proj_info.php";
 
 // Reatime posting will trigger this
 if (isset($_POST['search'])) {

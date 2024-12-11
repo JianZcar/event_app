@@ -5,9 +5,10 @@ web_start();
 
 // Custom componets
 include_once("./components/module.php");
+include_once("./../global_components/account.php");
 
 // Page Info
-include "./../global_components/pagination.php";
+include_once "./../global_components/pagination.php";
 $page_name = "User Management";
 $page_full_name = page_full_name();
 
@@ -17,20 +18,7 @@ if (isset($_SESSION['msg_account_announce'])) {
   unset($_SESSION['msg_account_announce']);
 }
 
-$sql_users = <<<SQL
-  SELECT 
-      users.id,
-      users.username, 
-      users.is_active, 
-      user_roles.role_name,
-      user_roles.color,
-      user_roles.bg_color
-  FROM 
-      users 
-  INNER JOIN user_roles ON users.user_role = user_roles.id
-  ORDER BY users.id;
-  SQL;
-// echo $sql_users;
+$sql_users = user_lists(true);
 
 $limit = 10;
 
@@ -59,7 +47,7 @@ if (isset($_GET['page']) && is_numeric($_GET['page'])) {
   <?php global_first_js();?>
 </head>
 
-<body class="flex flex-row min-w-screen">
+<body class="b-body">
   <div class="slide-panel" id="sidebar-content">
     <?php sidebar_init(); ?>
   </div>
@@ -74,14 +62,9 @@ if (isset($_GET['page']) && is_numeric($_GET['page'])) {
       }
       ?>
 
-      <?php system_message('Heres the users list.'); ?>
-
       <?php dialog_user_add(); ?>
-
       <div class="p-base">
         <?php search_bar(); ?>
-
-        <!-- User's Table -->
         <div class="relative overflow-hidden shadow-md rounded-lg" bis_skin_checked="1">
           <table class="table-fixed w-full text-left">
             <thead class="uppercase bg-blue-500 text-[#e5e7eb]">
@@ -139,10 +122,8 @@ if (isset($_GET['page']) && is_numeric($_GET['page'])) {
       </div>
     </main>
 
-    <?php global_footer($proj_name, $proj_version, $proj_author, $proj_current_year); ?>
+    <?php global_footer(); ?>
     <?php global_last_js(); ?>
   </div>
-
 </body>
-
 </html>

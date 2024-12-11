@@ -1,6 +1,6 @@
 <?php
 session_start();
-include "./../../proj_info.php";
+include_once "./../../proj_info.php";
 
 $page_name = "Login";
 $page_full_name = "$page_name | $proj_name";
@@ -48,7 +48,7 @@ if (isset($db_conn)) {
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
-<body class="flex flex-row min-w-screen">
+<body class="b-body">
 
     <!-- Rest is main content -->
     <!-- Main Content -->

@@ -9,6 +9,7 @@ function calendar_init_script() {
 
 <?php
 function get_events() {
+    // Get all events from the database and load to full calendar js
     global $db_conn;
     $sql_events = <<<SQL
     SELECT 

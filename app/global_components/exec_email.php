@@ -3,23 +3,28 @@
 // When we use the gmail as sender
 define("MAIL_HOST", "smtp.gmail.com");
 
-require "./../../vendor/autoload.php";
-require "./../../proj_info.php";
+require_once "./../../vendor/autoload.php";
+require_once "./../../proj_info.php";
+
 include_once "account.php";
 
 use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\SMTP;
+use PHPMailer\PHPMaincliler\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
-function mail_sender($post_id, $enderName,
+function mail_sender($post_id, $senderName,
                     $receiverEmail, $receiverName,
                     $subject_name, $message,
                     $attachment) {
 
     global $db_conn;
-    global $senderEmail, $senderPWD;
+    global $senderEmail;
+    global $senderPWD;
     $mail = new PHPMailer(true);
 
+    // REMOVE IT AFTER FIX
+    $senderEmail = "marcsysman@gmail.com";
+    $senderPWD = "zildknxuucsswclo";
     try {
         // $mail->SMTPDebug = SMTP::DEBUG_SERVER;                  //Enable verbose debug output else comment it
         $mail->isSMTP();
@@ -31,11 +36,13 @@ function mail_sender($post_id, $enderName,
         $mail->Port = 587;
 
         // Recipients
+        // echo "Sender Email: " . $senderEmail;
+        // exit();
         $mail->setFrom($senderEmail, 'Test mail by master');
         $mail->addAddress($receiverEmail, $receiverName);
-        $mail->addReplyTo($senderEmail, 'Information');
-        $mail->addCC($senderEmail);
-        $mail->addBCC($senderEmail);
+        // $mail->addReplyTo($senderEmail, 'Information');
+        // $mail->addCC($senderEmail);
+        // $mail->addBCC($senderEmail);
 
         // Attachments
         if (!empty($attachment)) {
@@ -43,7 +50,7 @@ function mail_sender($post_id, $enderName,
         }
 
         // Content
-        $mail->isHTML(true);
+        $mail->isHTML(false);
 
         $mail->Subject = $subject_name;
         $mail->Body = $message;
@@ -52,7 +59,7 @@ function mail_sender($post_id, $enderName,
 
         // alert on javascript when send done
         echo "<script type='text/javascript'>alert('Message has been sent');</script>";
-        session_announce("Message has been sent", true, "send_post.php?id=$post_id");
+        // session_announce("Message has been sent", true, "send_post.php?id=$post_id");
         // echo 'Message has been sent';
     } catch (Exception $e) {
         echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";

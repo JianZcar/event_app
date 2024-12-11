@@ -1,5 +1,5 @@
 <?php
-include './../../proj_info.php';
+include_once './../../proj_info.php';
 
 function paginate_init($records) { 
 	/**
@@ -16,11 +16,11 @@ function paginate_init($records) {
 ?>
 	<a class="paginate-btn" href="?page=1">First</a>
 
-	<!-- <?php // if (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 1): ?>
+	<?php if (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] > 1): ?>
 			<a class="paginate-btn" href="?page=<?php echo $_GET['page'] - 1; ?>">Prev</a>
-	<?php // else: ?>
-			<a class="paginate-btn" href="">Prev</a>
-	<?php // endif; ?> -->
+	<?php else: ?>
+			<a class="paginate-btn" href="?page=1">Prev</a>
+	<?php endif; ?>
 
 	<div class="hidden md:block page-numbers">
 			<?php
@@ -39,10 +39,10 @@ function paginate_init($records) {
 	<?php if (isset($_GET['page']) && is_numeric($_GET['page']) && $_GET['page'] < $records['total_pages']): ?>
 			<a class="paginate-btn" href="?page=<?php echo $_GET['page'] + 1; ?>">Next</a>
 	<?php else: ?>
-			<a class="paginate-btn" href="">Next</a>
+			<a class="paginate-btn" href="?page=<?php echo $currentPage + 1; ?>">Next</a>
 	<?php endif; ?>
 
-	<a class="paginate-btn" href="?page=<?php echo $records[1]; ?>">Last</a>
+	<a class="paginate-btn" href="?page=<?php echo $totalPages; ?>">Last</a>
 	<?php
 }
 ?>

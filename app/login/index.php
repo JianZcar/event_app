@@ -12,6 +12,11 @@ include_once "./components/exec_auth.php";
 $page_name = "Login";
 $page_full_name = page_full_name();
 
+// Check if the user is logged in then direct to admin page
+if (isset($_SESSION['user_id'])) {
+  header("Location: ./../admin/");
+  exit();
+}
 // Message Control
 if (isset($_SESSION['msg_account_announce'])) {
   $msg_account_announce = $_SESSION['msg_account_announce'];
@@ -22,10 +27,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $username = $_POST["username"];
   $password = $_POST["password"];
 
-  if (login_auth($username, $password)) {
-    header("Location: ./../admin/index.php");
+  if (login_auth($username, $password) == true) {
+    // header("Location: ./../admin/index.php");
+    // exit();
   } else {
-    session_announce("Invalid Username or Password", true, "index.php");
+    // $_SESSION['msg_account_announce'] = "Invalid Username or Password";
+    // header("Location: index.php");
+    // exit();
   }
 }
 
@@ -39,7 +47,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php global_first_js(); ?>
 </head>
 
-<body class="flex flex-row min-w-screen">
+<body class="b-body">
   <div class="w-full m-w-full">
     <?php login_navbar(); ?>
 
@@ -54,7 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <?php form_login(); ?>
     </main>
 
-    <?php global_footer($proj_name, $proj_version, $proj_author, $proj_current_year); ?>
+    <?php global_footer(); ?>
     <?php global_last_js(); ?>
   </div>
 

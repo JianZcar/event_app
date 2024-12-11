@@ -41,13 +41,18 @@ function register_auth($username, $password, $email) {
             $sql_cmd_user_infos->execute();
             $sql_cmd_user_infos->close();
 
-            return true;
+            // return true;
+            session_announce("Account created successfully", true, "index.php");
         } else {
-            return false;
+            session_announce("Account creation failed", true, "register.php");
+            // return false;
         }
     } catch (Exception $e) {
         error_log($e->getMessage());
-        return false;
+
+        // Debugginge purposes
+        session_announce($e ->getMessage(), true,"register.php");
+        // return false;
     } finally {
         if (isset($sql_cmd)) {
             $sql_cmd->close();
@@ -134,6 +139,7 @@ function login_auth($username, $password) {
                 $_SESSION['is_active'] = 1;
                 $_SESSION['role_name'] = $row['role_name'];
 
+                // WHEN WE WOULD BE USING HTTPS IN THAT CASE
                 // Set HttpOnly flag on the session cookie
                 // if (!ini_set('session.cookie_httponly', 1)) {
                 //     throw new Exception("Failed to set session.cookie_httponly");
@@ -145,17 +151,19 @@ function login_auth($username, $password) {
                 //         throw new Exception("Failed to set session.cookie_secure");
                 //     }
                 // }
-
-                return true;
-                exit();
+            
+                // If admin or guest but for default it should be admin only
+                session_announce("", true, "./../admin/");
+                // return true;
             } else {
-                $_SESSION['msg_account_announce'] = "Invalid Username or Password";
+                // Invalid password
+                session_announce("Invalid Username or Password", true, "index.php");
                 return false;
-                exit();
             }
         } else {
-            $_SESSION['msg_account_announce'] = "Invalid Username or Password";
-            return false;
+            // Username not found
+            session_announce("Username not found", true, "index.php");
+            // return false;
         }
     } catch (Exception $e) {
         error_log($e->getMessage());
@@ -180,5 +188,13 @@ function logout_auth($call) {
     session_destroy();
     header("Location: /app/login/");
     exit();
+}
+
+
+function get_auth_if_exists() {
+    if (isset($_SESSION['user_id'])) {
+        header("Location: ./../admin/");
+        exit();
+    }   
 }
 ?>

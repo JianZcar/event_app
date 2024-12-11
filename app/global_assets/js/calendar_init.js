@@ -31,10 +31,10 @@ function display_events() {
 
       var calendar = new FullCalendar.Calendar(calendarEl, {
         initialDate: "2024-01-01",
-        initialView: "timeGridWeek",
+        initialView: "dayGridMonth",
         nowIndicator: true,
         headerToolbar: {
-          left: "prev,next today",
+          left: "prev next today",
           center: "title",
           right: "dayGridMonth,timeGridWeek,timeGridDay,listWeek",
         },
@@ -55,6 +55,57 @@ function display_events() {
       });
 
       calendar.render();
+
+      // document.querySelector('#calendar').textContent += "@media screen and (max-width:767px) { .fc-toolbar.fc-header-toolbar {flex-direction:column;} .fc-toolbar-chunk { display: table-row; text-align:center; padding:5px 0; } }";
+      // var style = document.createElement('style');
+      // style.innerHTML = `
+      //     .fc-header-toolbar {
+      //         display: flex;
+      //         position: relative;
+      //         justify-content: space-between;
+      //         align-items: center;
+      //         flex-wrap: wrap;
+      //     }
+
+      //     .fc-toolbar-chunk {
+      //         flex: 1;
+      //         text-align: center;
+      //     }
+
+      //     .fc-toolbar-chunk:first-child {
+      //         text-align: left;
+      //     }
+
+      //     .fc-toolbar-chunk:last-child {
+      //         text-align: right;
+      //     }
+
+      //     /* Mobile view adjustments */
+      //     @media (max-width: 575px) {
+      //         .fc-header-toolbar {
+      //             flex-direction: row;
+      //             height: 50px;
+      //         }
+
+      //         .fc-toolbar-chunk {
+      //             flex: 1;
+      //             flex-direction: row;
+      //             text-align: center;
+      //             margin-bottom: 10px;
+      //         }
+
+      //         .fc-toolbar-chunk:first-child,
+      //         .fc-toolbar-chunk:last-child {
+      //             text-align: center;
+      //         }
+
+      //         .fc-button {
+      //             width: 50%;
+      //             margin-bottom: 5px;
+      //         }
+      //     }
+      // `;
+      // document.head.appendChild(style);
     })
     .catch((error) => {
       console.error("Error fetching events:", error);

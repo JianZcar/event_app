@@ -1,6 +1,11 @@
 <?php
 session_start();
-include "./../../proj_info.php";
+include_once "./../global_components/base.php";
+web_start();
+
+// Custom componets
+
+// Page Info
 $page_name = "Admin Panel";
 $page_full_name = "$page_name | $proj_name";
 
@@ -57,34 +62,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title><?php echo $page_full_name?></title>
-  <link href="../global_assets/css/output.css" rel="stylesheet">
-  <link href="./../global_assets/css/global_footer.css" rel="stylesheet">
-  <!-- <link href="./../global_assets/css/panel.css" rel="stylesheet"> -->
-  <!-- <link href="./../global_assets/css/sidebar.css" rel="stylesheet"> -->
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
-  <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+  <?php global_style(); ?>
+  <title><?php echo $page_full_name ?></title>
+  <?php global_first_js(); ?>
+  <?php tinymce_js_init(); ?>
 </head>
+<body class="b-body h-screen">
+  <div class="slide-panel" id="sidebar-content">
+    <?php sidebar_init(); ?>
+  </div>
 
-<body class="flex flex-row min-w-screen h-screen">
 
-<!-- Left Sidebar -->
-<div class="slide-panel" id="sidebar-content">
-  <?php include './../global_components/sidebar.php';?>
-</div>
 
-<!-- Rest is main content -->
-  <!-- Main Content -->
   <div class="flex flex-col w-screen max-w-screen min-h-screen">
-    <!-- Header -->
     <header class="navigator-header btn-slide">
       <a class="p-2 text-2xl hover-action" id="btn-menu-list" onclick="slideOpen()"><i class='bx bx-menu'></i></a>
       <h1 class="p-2 text-2xl"><?php echo $page_full_name?></h1>
     </header>
-
-    <!-- Main Object -->
     <main class="flex flex-col w-full h-full m-h-screen">
 
         <div class="p-base">
@@ -97,14 +91,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
 
     </main>
-    <script src="./../global_assets/js/modal.js"></script>
-  
-    <!-- Footer -->
-    <footer class="bg-gray-800 text-white p-4 p-footer" id="p-footer">
-      <p>All rights reserved <?php echo $proj_current_year?></p>
-    </footer>
-
-    <script src="./../global_assets/js/sidebar.js"></script>
+    <?php global_footer(); ?>
+    <?php global_last_js(); ?>
   </div>
 
 </body>

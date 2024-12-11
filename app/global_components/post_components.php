@@ -1,3 +1,15 @@
+
+<?php
+function dialog_add_post() {
+?>
+<div class="p-base flex flex-row justify-between items-center">
+    <p>Want to add the post?</p>
+    <button class="btn-accept-1" onclick="window.location.href='./add_post.php'">Add</button>
+</div>
+<?php
+}
+?>
+
 <?php
 function post_subject_name($subject_name, $post_status, $created_at) {
 ?>
@@ -39,12 +51,68 @@ function post_actions($post_id) {
 ?>
 
 <?php
+function post_create_subject_name() {
+?>
+<div class="p-base flex flex-col">
+    <input type="text" name="subject_name" class="p-textbox" placeholder="Subject Name">
+</div>
+<?php
+}
+?>
+
+<?php
+function post_create_content() {
+?>
+<div class="p-base">
+    <div class="p-4">
+        <div class="grid grid-cols-1 grid-rows-2">
+            <div class="flex flex-row">
+                <?php
+                $set_start_time = time_picker("2024-01-01 00:00:00", "start_time", "Start Time:");
+                $set_start_date = date_picker("2024-01-01 00:00:00", "start_date", "Start Date:");
+                ?>
+            </div>
+            <div class="flex flex-row">
+                <?php
+                $set_end_time = time_picker("2024-01-01 00:00:00", "end_time", "End Time:");
+                $set_end_date = date_picker("2024-01-01 00:00:00", "end_date", "End Date:");
+                ?>
+            </div>
+        </div>
+    </div>
+    <div>
+    <textarea id="content" name="content">
+    </textarea>
+</div>
+</div>
+
+<?php
+}
+?>
+
+<?php
+function post_actions_1() {
+    /**
+     * Display the actions for create the post
+     */
+?>
+<div class="p-base space-x-0 flex flex-col md:flex-row md:space-x-2">
+    <button type="submit" class="btn-post-accept-1">Create</button>
+    <a href="./view_posts.php" class="btn-post-danger-1">Cancel</a>
+</div>
+<?php
+}
+?>
+
+
+<?php
 function post_actions_2($post_id) {
+    /**
+     * This function is used to display the actions for the post.
+     */
 ?>
 <div class="p-base space-x-0 flex flex-col md:flex-row md:space-x-2">
     <a href="./send_post.php?id=<?php echo $post_id ?>" class="btn-post-accept-1">Invite</a>
-    <!-- Edit post -->
-    <a href="./edit_post.php?id=<?php echo $post_id ?>" class="btn-post-common-1">Edit Post</a>
     <a class="btn-post-danger-1">Delete</a>
 </div>
 <?php

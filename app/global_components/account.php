@@ -1,5 +1,46 @@
 <?php
-include "./../../proj_info.php";
+include_once "./../../proj_info.php";
+
+function check_user_exist($user_id) {
+	/**
+	 * Check if the user ID is invalid.
+	 *
+	 * @param int $user_id User ID
+	 */
+	if (!isset($user_id) || !is_numeric($user_id)) {
+		session_announce("User ID not set.", true, "/app/admin/user_management.php");
+	}
+}
+function user_lists($is_command_only) {
+	/**
+	 * Get a list of users.
+	 */
+	global $db_conn;
+	$sql_cmd = "SELECT
+					users.id,
+					users.username,
+					users.is_active,
+					user_roles.role_name,
+					user_roles.color,
+					user_roles.bg_color
+				FROM
+					users
+				INNER JOIN
+					user_roles
+				ON users.user_role = user_roles.id;";
+	if ($is_command_only) {
+		return $sql_cmd;
+	} else {
+		$result = $db_conn->query($sql_cmd);
+		return $result;
+	}
+}
+
+function user_type_status($role_id) {
+
+
+	
+}
 
 function get_user_email($user_id) {
 	/**
@@ -80,15 +121,16 @@ function session_announce(string $msg, bool $goto_require, string $goto_php): vo
 	 * Sets a session announcement message and redirects if required.
 	 *
 	 * @param string $msg Announcement message
-	 * @param bool $goto_require Whether redirection is required
+	 * @param bool $goto_require_once Whether redirection is required
 	 * @param string $goto_php Redirection page URL
 	 */
 
 	$_SESSION['msg_account_announce'] = $msg;
-
+	ob_start();
 	if ($goto_require) {
 		header("Location: $goto_php");
-		exit();
+		ob_end_flush();
+		// exit();	 		// Only works for windows
 	}
 }
 

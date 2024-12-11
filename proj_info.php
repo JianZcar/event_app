@@ -1,5 +1,6 @@
 
 <?php 
+
 // 1. PROJECT INFORMATION
 
 global $proj_name, $proj_version, $proj_description, $proj_author;
@@ -14,10 +15,10 @@ $proj_author = "aceday, JianZCar, JovTim";      // Project Author
 $db_toggle = TRUE;
 
 if ($db_toggle) {
-  $db_host = "localhost";         // DB Hostname
+  $db_host = "127.0.0.1";         // DB Hostname
   $db_port = "3306";              // DB Port
   $db_user = "root";              // DB Username
-  $db_pass = "Day15@!";           // DB Password
+  $db_pass = "";           // DB Password
   $db_name = "event_app";         // DB Name
 
   global $db_conn;
@@ -52,10 +53,13 @@ $proj_current_year = date('Y');
 
 // 4. TESTER SECTION
 // 4.1 Tester Information
+$master_debug = FALSE;           // Master Debugging
 
 // Email Setup
-$senderEmail = "wawa";
-$senderPWD = "wawa";
+$senderEmail = "marcsysman@gmail.com";
+$senderPWD = "zildknxuucsswclo";
+
+
 // 5. CUSTOMIZE SECTION
 
 ?>

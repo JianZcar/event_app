@@ -1,4 +1,19 @@
 <?php
+function merge_datetime($date, $time) {
+    /**
+     * Merge date and time
+     *
+     * @param string $date Date
+     * @param string $time Time
+     * @return string Date and time
+     */
+    $datetime = date("Y-m-d H:i:s", strtotime("$date $time"));
+    return $datetime;
+}
+?>
+
+
+<?php
 function date_picker($datetime, $varname, $date_label = NULL) {
     /**
      * Date and time picker
@@ -15,18 +30,23 @@ function date_picker($datetime, $varname, $date_label = NULL) {
     if (empty($varname)) {
         $varname = "date";
     }
-?>
-
+    ?>
+    
     <div class="relative max-w-sm w-full md:w-1/2">
-    <label for="date" class="block mb-2 text-sm font-medium text-gray-900 text-center dark:text-white"><?php echo $date_label?></label>
-        <!-- <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
-            <svg class="w-4 h-4 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-            <path d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z"/>
-        </svg>
-        </div> -->
-        <input datepicker name="<?php echo $varname?>" id="<?php echo $varname?>" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $date_label?>" value="<?php echo $date; ?>" onclick="this.type='date'">
+        <label for="date" class="block mb-2 text-sm font-medium text-gray-900 text-center dark:text-white"><?php echo $date_label?></label>
+        <input name="<?php echo $varname?>" id="<?php echo $varname?>" type="text" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg w-full focus:ring-blue-500 focus:border-blue-500 block ps-10 p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="<?php echo $date_label?>" value="<?php echo $date; ?>" onclick="this.type='date'" onblur="formatDate(this)">
     </div>
-
+    
+    <script>
+    function formatDate(input) {
+        if (input.type === 'date') {
+            const date = new Date(input.value);
+            const formattedDate = date.toISOString().split('T')[0];
+            input.type = 'text';
+            input.value = formattedDate;
+        }
+    }
+    </script>
 <?php
     return $datetime;
 }

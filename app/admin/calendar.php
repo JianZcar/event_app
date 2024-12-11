@@ -5,6 +5,9 @@ web_start();
 
 // Custom componets
 include_once "./../global_components/calendar_mod.php";
+include_once "./../global_components/calendar_components.php";
+
+
 // Page Info
 $page_name = "Calendar";
 $page_full_name = page_full_name();
@@ -18,8 +21,8 @@ if (isset($_SESSION['msg_account_announce'])) {
 // Query calendar data
 $event_data = get_events();
 
-
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -34,10 +37,14 @@ $event_data = get_events();
   
 </head>
 
-<body class="flex flex-row min-w-screen">
+<body class="b-body">
 
   <!-- Left Sidebar -->
   <div class="slide-panel" id="sidebar-content">
+  
+    The specific fix is:
+    
+    
     <?php sidebar_init(); ?>
   </div>
 
@@ -45,7 +52,7 @@ $event_data = get_events();
   <div class="flex flex-col w-screen max-w-screen min-h-screen">
 
     <!-- Header -->
-    <?php global_header($page_full_name, $proj_name); ?>
+    <?php global_header($page_full_name); ?>
 
     <!-- Main Object -->
     <main class="main-content">
@@ -53,24 +60,9 @@ $event_data = get_events();
       <?php system_message('Heres the incoming event.'); ?>
 
       <div class="p-base flex flex-col md:flex-row">
-        <!-- about posts for event app -->
-        <div class="flex flex-col w-full p-3">
-          <p class="bold">Upcoming Events in 3 months</p>
-          <div class="text-sm font-light text-[#6B7280] pb-8" bis_skin_checked="1">"Mark Your Calendars": Simplify date remembering.</div>
 
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-2
-                      px-1 py-1" bis_skin_checked="1">
-            <div class="upcoming-list" bis_skin_checked="1">test</div>
-            <div class="upcoming-list" bis_skin_checked="1">test</div>
-            <div class="upcoming-list" bis_skin_checked="1">test</div>
-            <div class="upcoming-list" bis_skin_checked="1">test</div>
-          </div>
+        <!-- <?php upcoming_event_show($event_data); ?> -->
 
-
-
-        </div>
-
-        <!-- Table -->
         <div class="flex flex-col w-full">
           <div class="p-calendar" id="calendar"></div>
         </div>
@@ -79,10 +71,12 @@ $event_data = get_events();
     </main>
 
     <?php 
+    // This part will call the fullcalendar from node_modules
     calendar_init();
-    global_footer($proj_name, $proj_version, $proj_author, $proj_current_year);
+    
+
+    global_footer();
     global_last_js(); ?>
-    <!-- <script src="./../global_assets/js/calendar.js"></script> -->
   </div>
 
 </body>

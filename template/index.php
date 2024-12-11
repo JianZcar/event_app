@@ -1,8 +1,8 @@
 <?php
   session_start();
 
-  // Include the project information
-  include "./../proj_info.php";
+  // include_once the project information
+  include_once "./../proj_info.php";
 
   $page_name = "Admin Panel";
   $page_full_name = "$page_name | $proj_name";

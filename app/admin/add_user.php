@@ -19,17 +19,12 @@ $page_full_name = page_full_name();
   <title><?php echo $page_full_name ?></title>
   <?php global_first_js();?>
 </head>
-
-<body class="flex flex-row min-w-screen">
-
+<body class="b-body">
   <div class="slide-panel" id="sidebar-content">
     <?php sidebar_init(); ?>
   </div>
-
   <div class="flex flex-col w-screen max-w-screen min-h-screen">
-
     <?php global_header($page_full_name, $proj_name); ?>
-
     <main class="main-content">
     <?php 
       if (isset($msg_account_announce)) {
@@ -37,14 +32,10 @@ $page_full_name = page_full_name();
         unset($msg_account_announce);
       }
     ?>
-
     <?php form_user_add()?>
     </main>
-
-    <?php global_footer($proj_name, $proj_version, $proj_author, $proj_current_year); ?>
+    <?php global_footer(); ?>
     <?php global_last_js(); ?>
   </div>
-
 </body>
-
 </html>

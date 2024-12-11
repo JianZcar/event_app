@@ -1,0 +1,5 @@
+@layer components {
+    .form-file-upload {
+        @apply block w-full rounded-lg rounded-l-lg border border-blue-300 bg-gray-50 p-1 px-3 py-2 text-gray-600 ring ring-transparent focus:border-transparent focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-sm;
+    }
+}

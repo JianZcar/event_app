@@ -1,5 +1,5 @@
 <?php              
-require './../../proj_info.php';
+require_once './../../proj_info.php';
 $display_query = "SELECT * FROM event_data";             
 $results = mysqli_query($db_conn,$display_query);   
 $count = mysqli_num_rows($results);

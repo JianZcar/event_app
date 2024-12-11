@@ -1,7 +1,7 @@
 <?php
 session_start();
-include "./../../proj_info.php";
-include "./../global_components/pagination.php";
+include_once "./../../proj_info.php";
+include_once "./../global_components/pagination.php";
 $page_name = "User Management";
 $page_full_name = "$page_name | $proj_name";
 
@@ -58,11 +58,11 @@ if (isset($_GET['page']) && is_numeric($_GET['page'])) {
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
 </head>
 
-<body class="flex flex-row min-w-screen">
+<body class="b-body">
 
   <!-- Left Sidebar -->
   <div class="slide-panel" id="sidebar-content">
-    <?php include './../global_components/sidebar.php'; ?>
+    <?php include_once './../global_components/sidebar.php'; ?>
   </div>
 
   <!-- Rest is main content -->

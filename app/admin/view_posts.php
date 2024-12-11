@@ -45,7 +45,7 @@ if (isset($_SESSION['msg_account_announce'])) {
   <?php global_first_js(); ?>
 </head>
 
-<body class="flex flex-row min-w-screen">
+<body class="b-body">
 
   <?php // Left sidebar ?>
   <div class="slide-panel" id="sidebar-content">
@@ -67,14 +67,14 @@ if (isset($_SESSION['msg_account_announce'])) {
       <?php post_subject_name($subject_name, $post_status, $created_at); ?>
 
       <div class="p-base">
-        <?php post_content($content, $start_datetime, $end_datetime, $updated_at); ?>
+        <?php post_content($start_datetime, $end_datetime, $content); ?>
         <?php post_actions($post_id) ?>
       </div>
 
       <?php post_actions_2($post_id) ?>
     </main>
 
-    <?php global_footer($proj_name, $proj_version, $proj_author, $proj_current_year); ?>
+    <?php global_footer(); ?>
     <?php global_last_js(); ?>
   </div>
 </body>

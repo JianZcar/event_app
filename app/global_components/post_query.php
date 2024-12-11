@@ -1,7 +1,37 @@
 <?php
 include_once "pagination.php";
 
+function posts_check() {
+    /**
+     * Check if the post ID is set on the address bar,
+     * if not, redirect to the posts page.
+     */
+    if (!isset($_GET['id'])) {
+        session_announce("Post ID is not set.", true, "./posts.php");
+    }
+}
+
+function post_check_invalid($post_id) {
+    /**
+     * Check if the post ID is invalid,
+     * if invalid, redirect to the posts page.
+     * @param int $post_id
+     */
+    if (!is_numeric($post_id)) {
+        session_announce("Invalid post ID.", true, "./posts.php");
+    }
+}
+
 function post_lists($conn, $user_id, $toggle_pagination=true, $page=1, $limit=5) {
+    /**
+     * Get all posts
+     * @param object $conn
+     * @param int $user_id
+     * @param bool $toggle_pagination
+     * @param int $page
+     * @param int $limit
+     * @return array
+     */
     $sql_posts = "SELECT subject_name, id, content, start_datetime, end_datetime FROM event_posts";
     if ($toggle_pagination) {
         $result_posts = paginate($conn, $sql_posts, $page, $limit);
@@ -30,6 +60,60 @@ function check_post_exist($post_id) {
         exit();
     }
 }
+
+function create_post($subject_name, $start_datetime, $end_datetime, $content, $user_id) {
+    /**
+     * Create post
+     * @param string $subject_name
+     * @param string $start_datetime
+     * @param string $end_datetime
+     * @param string $content
+     * @param int $user_id
+     */
+
+    // Check post content
+    if (strlen($subject_name) == 0 || strlen($start_datetime) == 0 || strlen($end_datetime) == 0 || strlen($content) == 0) {
+        session_announce("Please fill in all fields.", true, "./add_post.php");
+        exit();
+    }
+    // if (strtotime($start_datetime) > strtotime($end_datetime)) {
+    //     session_announce("End date must be greater than start date.", true, "./add_post.php");
+    //     exit();
+    // }
+    // if (strtotime($start_datetime) < strtotime(date("Y-m-d H:i:s"))) {
+    //     session_announce("Start date must be greater than current date.", true, "./add_post.php");
+    //     exit();
+    // }
+    // if (strtotime($end_datetime) < strtotime(date("Y-m-d H:i:s"))) {
+    //     session_announce("End date must be greater than current date.", true, "./add_post.php");
+    //     exit();
+    // }
+    // if (strtotime($start_datetime) == strtotime($end_datetime)) {
+    //     session_announce("Start date and end date cannot be the same.", true, "./add_post.php");
+    //     exit();
+    // }
+
+    global $db_conn;
+
+    // Create post
+    $sql_cmd = "INSERT INTO 
+                    event_posts (subject_name, content, start_datetime, end_datetime, user_id, created_at, updated_at) 
+                VALUES 
+                    (?, ?, ?, ?, ?, NOW(), NOW())";
+    $sql_query = $db_conn->prepare($sql_cmd);
+    $sql_query->bind_param("ssssi", $subject_name, $content, $start_datetime, $end_datetime, $user_id);
+    $sql_query->execute();
+
+    // Check if post is created
+    if ($sql_query->affected_rows == 1) {
+        session_announce("Post created successfully.", true, "./posts.php");
+    } else {
+        session_announce("Failed to create post.", true, "./add_post.php");
+    }
+}
+
+
+
 function view_post($post_id, $user_id) {
     /**
      * Get information post

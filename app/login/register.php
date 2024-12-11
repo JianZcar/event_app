@@ -27,14 +27,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   
   if ($password == $password_confirm) {
     if (register_auth($username, $password, $email)) {
-      session_announce("Account created successfully", true, "index.php");
+      // session_announce("Account created successfully", true, "index.php");
       // $_SESSION['msg_account_announce'] = "Account created successfully";
     } else {
-      session_announce("Account creation failed", true, "register.php");
+      // session_announce("Account creation failed", true, "register.php");
       // $_SESSION['msg_account_announce'] = "Account creation failed";
     }
   } else {
-    session_announce("Password does not match", true, "register.php");
+    // session_announce("Password does not match", true, "register.php");
     // $_SESSION['msg_account_announce'] = "Password does not match";
   }
 } 
@@ -48,7 +48,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   <?php global_first_js(); ?>
 </head>
 
-<body class="flex flex-row min-w-screen">
+<body class="b-body">
   <div class="main-content">
     <?php login_navbar(); ?>
     <?php
@@ -61,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
       <?php form_register(); ?>
     </main>
 
-    <?php global_footer($proj_name, $proj_version, $proj_author, $proj_current_year); ?>
+    <?php global_footer(); ?>
     <?php global_last_js(); ?>
   </div>
 </body>

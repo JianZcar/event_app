@@ -4,9 +4,9 @@ include_once "./../global_components/base.php";
 web_start();
 
 // Custom componets
-include "./../global_components/exec_posts.php";
-include "./../global_components/pagination.php";
-
+include_once "./../global_components/exec_posts.php";
+include_once "./../global_components/pagination.php";
+include_once "./../global_components/post_components.php";
 // Page Info
 $page_name = "Posts";
 $page_full_name = page_full_name();
@@ -17,19 +17,9 @@ $page_full_name = page_full_name();
 // Message Control
 if (isset($_SESSION['msg_account_announce'])) {
   $msg_account_announce = $_SESSION['msg_account_announce'];
-  // unset($_SESSION['msg_account_announce']);
+  unset($_SESSION['msg_account_announce']);
 }
-
-$sql_ = <<<SQL
-  SELECT 
-    subject_name,
-    id,
-    content,
-    start_datetime,
-    end_datetime
-  FROM
-    event_posts
-  SQL;
+$sql_cmd = "SELECT * FROM event_posts";
 
 // Access paginate 
 $limit = 12;
@@ -45,23 +35,16 @@ $records = get_posts($limit);
   <?php global_first_js();?>
 </head>
 
-<body class="flex flex-row min-w-screen">
+<body class="b-body">
 
-  <!-- Left Sidebar -->
   <div class="slide-panel" id="sidebar-content">
     <?php sidebar_init(); ?>
   </div>
 
-  <!-- Rest is main content -->
-  <!-- Main Content -->
   <div class="flex flex-col w-screen max-w-screen min-h-screen">
-    <!-- Header -->
     <?php global_header($page_full_name, $proj_name); ?>
-
-    <!-- Main Object -->
     <main class="main-content">
 
-      <!-- output the msg control -->
       <?php if (isset($msg_account_announce)) : ?>
         <div class="p-base">
           <p><?php echo $msg_account_announce ?></p>
@@ -69,12 +52,11 @@ $records = get_posts($limit);
       <?php endif; ?>
 
       <?php system_message("Overview of posts for the event schedule."); ?>
-
+      <?php dialog_add_post(); ?>
       <div class="p-base">
         <p>Your Agenda.</p>
 
         <div class="post-grid">
-
           <?php if ($records['records']->num_rows > 0) : ?>
           <?php while ($row = $records['records']->fetch_assoc()) : ?>
           <div class="post-grid-items">
@@ -115,11 +97,8 @@ $records = get_posts($limit);
 
       </div>
     </main>
-
-    <?php global_footer($proj_name, $proj_version, $proj_author, $proj_current_year); ?>
+    <?php global_footer(); ?>
     <?php global_last_js(); ?>
   </div>
-
 </body>
-
 </html>

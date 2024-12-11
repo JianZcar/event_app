@@ -3,29 +3,28 @@ session_start();
 include_once "./../global_components/base.php";
 web_start();
 
-include "./../global_components/account.php";
-include "./../global_components/pagination.php";
-// include "./../global_components/email_componets.php";
-include "./../global_components/exec_email.php";
-include "./../global_components/post_query.php";
+include_once "./../global_components/account.php";
+include_once "./../global_components/pagination.php";
+include_once "./../global_components/exec_email.php";
+include_once "./../global_components/post_query.php";
 
 // Page Info
 $page_name = "Send to";
 $page_full_name = page_full_name();
 
+// Check if the id is set
+posts_check();
+
 // POST
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   // Get post data
   $set_email = isset($_POST['set_email']) ? $_POST['set_email'] : NULL;
-
   $set_user = isset($_POST['set_user']) ? $_POST['set_user'] : NULL;
 
   // Preparetion the post
   $poster_data = view_post($_GET['id'], $_SESSION['user_id']);
-
   $subject_name = $poster_data['subject_name'];
   $content = $poster_data['content'];
-
 
   // If only to access the email to send but not for users
   if (isset($set_email) && !isset($set_user)) {
@@ -180,7 +179,7 @@ if (isset($_GET['page']) && is_numeric($_GET['page'])) {
       </div>
     </main>
 
-    <?php global_footer($proj_name, $proj_version, $proj_author, $proj_current_year); ?>
+    <?php global_footer(); ?>
     <?php global_last_js(); ?>
   </div>
 

@@ -10,11 +10,19 @@ function sidebar_init() {
   </div>
 </div>
 
-<div class="slide-profile">
+<!-- <div class="slide-profile focus:brightness-50">
   <img class="slide_profile_img" src="./../global_assets/img/default_user.png" alt="me">
   <div class="sidebar-profile-user set-hide">    
     <p class="bold">Marc Buday</p>
     <p class="">Admin</p>
+  </div>
+</div> -->
+<div class="slide-profile focus:bg-slate-400" onclick="window.location.href='./profile.php'">
+  <img class="slide_profile_img" src="./../global_assets/img/default_user.png" alt="me">
+  <div class="sidebar-profile-user set-hide">    
+    <p class="bold"><?php echo $_SESSION['username'];?>
+    </p>
+    <p class=""><?php echo $_SESSION['role_name'];?></p>
   </div>
 </div>
 

@@ -1,5 +1,5 @@
 <?php
-include "./../global_components/base.php";
+include_once "./../global_components/base.php";
 
 $page_title = "Welcome";
 
