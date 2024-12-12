@@ -1,6 +1,5 @@
-
-<?php 
-
+<?php
+ob_start();
 // 1. PROJECT INFORMATION
 
 global $proj_name, $proj_version, $proj_description, $proj_author;
@@ -61,5 +60,4 @@ $senderPWD = "zildknxuucsswclo";
 
 
 // 5. CUSTOMIZE SECTION
-
-?>
+ob_end_flush();

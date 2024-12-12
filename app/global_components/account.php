@@ -1,4 +1,5 @@
 <?php
+ob_start();
 include_once "./../../proj_info.php";
 
 function check_user_exist($user_id) {
@@ -117,21 +118,11 @@ function check_username(mysqli $conn, int $id, string $username): bool {
 }
 
 function session_announce(string $msg, bool $goto_require, string $goto_php): void {
-	/**
-	 * Sets a session announcement message and redirects if required.
-	 *
-	 * @param string $msg Announcement message
-	 * @param bool $goto_require_once Whether redirection is required
-	 * @param string $goto_php Redirection page URL
-	 */
-
-	$_SESSION['msg_account_announce'] = $msg;
-	ob_start();
-	if ($goto_require) {
-		header("Location: $goto_php");
-		ob_end_flush();
-		// exit();	 		// Only works for windows
-	}
+    $_SESSION['msg_account_announce'] = $msg;
+    if ($goto_require) {
+        header("Location: $goto_php");
+        exit();
+    }
 }
 
 function password_encoder(string $password): string {
@@ -196,3 +187,6 @@ function exec_logout(): void {
 	header("Location: /");
 	// exit;
 }
+
+ob_end_flush();
+?>

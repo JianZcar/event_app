@@ -1,0 +1,14 @@
+RewriteEngine On
+RewriteBase /
+
+# Design first
+
+# Login Page
+# RewriteRule ^login$ app/login/login.php [L]
+
+# Register Page
+# RewriteRule ^register$ app/login/register.php [L]
+
+
+# Rewrite rule to handle /posts/1 to /app/admin/view_posts.php?id=1
+RewriteRule ^posts/([0-9]+)$ app/admin/view_posts.php?id=$1 [L,QSA]

@@ -26,16 +26,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
   $email = $_POST["email"];
   
   if ($password == $password_confirm) {
-    if (register_auth($username, $password, $email)) {
-      // session_announce("Account created successfully", true, "index.php");
-      // $_SESSION['msg_account_announce'] = "Account created successfully";
-    } else {
-      // session_announce("Account creation failed", true, "register.php");
-      // $_SESSION['msg_account_announce'] = "Account creation failed";
-    }
-  } else {
-    // session_announce("Password does not match", true, "register.php");
-    // $_SESSION['msg_account_announce'] = "Password does not match";
+   register_auth($username, $password, $email);
+//       session_announce("Account created successfully", true, "index.php");
+//       $_SESSION['msg_account_announce'] = "Account created successfully";
+//   else {
+//       session_announce("Account creation failed", true, "register.php");
+//       $_SESSION['msg_account_announce'] = "Account creation failed";
+//    }
+//  } else {
+//     session_announce("Password does not match", true, "register.php");
+//     $_SESSION['msg_account_announce'] = "Password does not match";
   }
 } 
 ?>
