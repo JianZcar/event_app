@@ -6,8 +6,6 @@ web_start();
 // Custom componets
 include_once "./../global_components/calendar_mod.php";
 include_once "./../global_components/calendar_components.php";
-
-
 // Page Info
 $page_name = "Calendar";
 $page_full_name = page_full_name();
@@ -21,8 +19,8 @@ if (isset($_SESSION['msg_account_announce'])) {
 // Query calendar data
 $event_data = get_events();
 
-?>
 
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -41,10 +39,6 @@ $event_data = get_events();
 
   <!-- Left Sidebar -->
   <div class="slide-panel" id="sidebar-content">
-  
-    The specific fix is:
-    
-    
     <?php sidebar_init(); ?>
   </div>
 
@@ -71,10 +65,7 @@ $event_data = get_events();
     </main>
 
     <?php 
-    // This part will call the fullcalendar from node_modules
     calendar_init();
-    
-
     global_footer();
     global_last_js(); ?>
   </div>

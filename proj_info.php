@@ -1,5 +1,5 @@
-<?php
-ob_start();
+
+<?php 
 // 1. PROJECT INFORMATION
 
 global $proj_name, $proj_version, $proj_description, $proj_author;
@@ -14,7 +14,7 @@ $proj_author = "aceday, JianZCar, JovTim";      // Project Author
 $db_toggle = TRUE;
 
 if ($db_toggle) {
-  $db_host = "127.0.0.1";         // DB Hostname
+  $db_host = "localhost";         // DB Hostname
   $db_port = "3306";              // DB Port
   $db_user = "root";              // DB Username
   $db_pass = "";           // DB Password
@@ -60,4 +60,5 @@ $senderPWD = "zildknxuucsswclo";
 
 
 // 5. CUSTOMIZE SECTION
-ob_end_flush();
+
+?>

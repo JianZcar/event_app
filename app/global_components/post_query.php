@@ -62,56 +62,55 @@ function check_post_exist($post_id) {
 }
 
 function create_post($subject_name, $start_datetime, $end_datetime, $content, $user_id) {
-    /**
-     * Create post
-     * @param string $subject_name
-     * @param string $start_datetime
-     * @param string $end_datetime
-     * @param string $content
-     * @param int $user_id
-     */
+  /**
+   * Create post
+   * @param string $subject_name
+   * @param string $start_datetime
+   * @param string $end_datetime
+   * @param string $content
+   * @param int $user_id
+   */
 
-    // Check post content
-    if (strlen($subject_name) == 0 || strlen($start_datetime) == 0 || strlen($end_datetime) == 0 || strlen($content) == 0) {
-        session_announce("Please fill in all fields.", true, "./add_post.php");
-        exit();
-    }
-    // if (strtotime($start_datetime) > strtotime($end_datetime)) {
-    //     session_announce("End date must be greater than start date.", true, "./add_post.php");
-    //     exit();
-    // }
-    // if (strtotime($start_datetime) < strtotime(date("Y-m-d H:i:s"))) {
-    //     session_announce("Start date must be greater than current date.", true, "./add_post.php");
-    //     exit();
-    // }
-    // if (strtotime($end_datetime) < strtotime(date("Y-m-d H:i:s"))) {
-    //     session_announce("End date must be greater than current date.", true, "./add_post.php");
-    //     exit();
-    // }
-    // if (strtotime($start_datetime) == strtotime($end_datetime)) {
-    //     session_announce("Start date and end date cannot be the same.", true, "./add_post.php");
-    //     exit();
-    // }
+  // Check post content
+  if (strlen($subject_name) == 0 || strlen($start_datetime) == 0 || strlen($end_datetime) == 0 || strlen($content) == 0) {
+    session_announce("Please fill in all fields.", true, "./add_post.php");
+    exit();
+  }
+//  if (strtotime($start_datetime) > strtotime($end_datetime)) {
+//    session_announce("End date must be greater than start date.", true, "./add_post.php");
+//    exit();
+//  }
+//  if (strtotime($start_datetime) < strtotime(date("Y-m-d H:i:s"))) {
+//    session_announce("Start date must be greater than current date.", true, "./add_post.php");
+//    exit();
+//  }
+//  if (strtotime($end_datetime) < strtotime(date("Y-m-d H:i:s"))) {
+//    session_announce("End date must be greater than current date.", true, "./add_post.php");
+//    exit();
+//  }
+//  if (strtotime($start_datetime) == strtotime($end_datetime)) {
+//    session_announce("Start date and end date cannot be the same.", true, "./add_post.php");
+//    exit();
+//  }
 
-    global $db_conn;
+  global $db_conn;
 
-    // Create post
-    $sql_cmd = "INSERT INTO 
+  // Create post
+  $sql_cmd = "INSERT INTO 
                     event_posts (subject_name, content, start_datetime, end_datetime, user_id, created_at, updated_at) 
                 VALUES 
                     (?, ?, ?, ?, ?, NOW(), NOW())";
-    $sql_query = $db_conn->prepare($sql_cmd);
-    $sql_query->bind_param("ssssi", $subject_name, $content, $start_datetime, $end_datetime, $user_id);
-    $sql_query->execute();
+  $sql_query = $db_conn->prepare($sql_cmd);
+  $sql_query->bind_param("ssssi", $subject_name, $content, $start_datetime, $end_datetime, $user_id);
+  $sql_query->execute();
 
-    // Check if post is created
-    if ($sql_query->affected_rows == 1) {
-        session_announce("Post created successfully.", true, "./posts.php");
-    } else {
-        session_announce("Failed to create post.", true, "./add_post.php");
-    }
+  // Check if post is created
+  if ($sql_query->affected_rows == 1) {
+    session_announce("Post created successfully.", true, "./posts.php");
+  } else {
+    session_announce("Failed to create post.", true, "./add_post.php");
+  }
 }
-
 
 
 function view_post($post_id, $user_id) {

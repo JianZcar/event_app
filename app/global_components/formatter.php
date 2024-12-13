@@ -47,6 +47,8 @@ function date_post($date, $format_mode, $words_bool) {
 }
 
 // Checking if the date is "Incoming", "Past", or "Ongoing"
+
+
 function date_status($start_date, $end_date) {
     /**
      * Get date status (Incoming, Ongoing, Past)

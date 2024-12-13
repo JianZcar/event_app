@@ -61,7 +61,7 @@ if (isset($_GET['page']) && is_numeric($_GET['page'])) {
         unset($msg_account_announce);
       }
       ?>
-
+      <?php system_message('Heres the users list.'); ?>
       <?php dialog_user_add(); ?>
       <div class="p-base">
         <?php search_bar(); ?>

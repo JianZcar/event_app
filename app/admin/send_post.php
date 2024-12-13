@@ -21,25 +21,43 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $set_email = isset($_POST['set_email']) ? $_POST['set_email'] : NULL;
   $set_user = isset($_POST['set_user']) ? $_POST['set_user'] : NULL;
 
-  // Preparetion the post
+  // Prepare the post
   $poster_data = view_post($_GET['id'], $_SESSION['user_id']);
   $subject_name = $poster_data['subject_name'];
   $content = $poster_data['content'];
 
-  // If only to access the email to send but not for users
-  if (isset($set_email) && !isset($set_user)) {
-    $email = $set_email;
+  if (empty($set_user)) {
+    $post_id = $_GET['id'];
   } else {
-    // if user is set from the user list
+    // If user is set from the user list
     $post_id = $_GET['id'];
     $user_id = $set_user;
     $email = get_user_email($user_id);
   }
 
-  // Send email
-  mail_sender($post_id, "Test32", $email, "TestReceiver", $subject_name, $content, NULL);
+  // Fetch attachments from the database
+  $attachments = [];
+  $sql_cmd = "SELECT attachment FROM event_post_attachments WHERE post_id = ?";
+  $stmt = $db_conn->prepare($sql_cmd);
+  $stmt->bind_param("i", $post_id);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  while ($row = $result->fetch_assoc()) {
+    $attachments[] = $row['attachment'];
+  }
 
+  // Determine the email to send manually
+  if (!empty($set_email)) {
+    $email = $set_email;
+    mail_sender($post_id, "Test32", $email, "TestReceiver", $subject_name, $content, $attachments);
+  } else if (!empty($email)) {
+    // Send email from the Db
+    mail_sender($post_id, "Test32", $email, "TestReceiver", $subject_name, $content, $attachments);
+  } else {
+    echo "Email address is not set.";
+  }
 }
+
 // Message Control
 if (isset($_SESSION['msg_account_announce'])) {
   $msg_account_announce = $_SESSION['msg_account_announce'];
@@ -47,16 +65,16 @@ if (isset($_SESSION['msg_account_announce'])) {
 }
 
 $sql_users = <<<SQL
-  SELECT 
+  SELECT
       users.id,
-      users.username, 
-      users.is_active, 
+      users.username,
+      users.is_active,
       user_roles.role_name,
       user_roles.color,
       user_roles.bg_color,
       user_infos.email
-  FROM 
-      users 
+  FROM
+      users
   INNER JOIN user_roles ON users.user_role = user_roles.id
   INNER JOIN user_infos ON users.id = user_infos.id
   ORDER BY users.id;
@@ -66,14 +84,6 @@ $sql_users = <<<SQL
 $limit = 10;
 
 if (isset($_GET['page']) && is_numeric($_GET['page'])) {
-  // if theres greather than last page it will redirect to the last page
-  // if ($_GET['page'] > $records[1]) {
-  //   header("Location: user_management.php?page=" . $records[1]);
-  // } else if ($_GET['page'] < 1) {
-  //   header("Location: user_management.php?page=1");
-  // } else {
-  //   $records = paginate($db_conn, $sql_users, $_GET['page'], $limit);
-  // }
   $records = paginate($db_conn, $sql_users, $_GET['page'], $limit);
 } else {
   $records = paginate($db_conn, $sql_users, 0, $limit);
@@ -104,13 +114,14 @@ if (isset($_GET['page']) && is_numeric($_GET['page'])) {
         <h1 class="p-title">Select user or enter email manually and send the invitation.</h1>
       </div>
       <div class="p-base ">
-        <form method="post" class="flex flex-col w-full">
+      <form method="post" enctype="multipart/form-data">
         <h1>Email Address (Manually)</h1>
         <div class="flex flex-row">
-          <input class="p-textbox" placeholder="Enter the email address">
-          <button class="btn-search-1">Send</button>
+          <input class="p-textbox" name="set_email" placeholder="Enter the email address">
+<!--          <input type="file" name="attachments[]" multiple>-->
+          <button class="btn-search-1" type="submit">Send</button>
         </div>
-        </form>
+      </form>
       </div>
       <div class="p-base">
         <div class="flex flex-row pb-2 space-x-4">
@@ -159,7 +170,7 @@ if (isset($_GET['page']) && is_numeric($_GET['page'])) {
                     <form method="post">
                       <button type="submit" name="set_user" value="<?php echo $user_id; ?>" class="btn-common h-full w-full block md:h-1/2 md:w-1/2" style="margin: 0 auto;">Invite</button>
                     </form>
-                    
+
                   </td>
                   </td>
                 </tr>

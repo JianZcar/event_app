@@ -42,19 +42,16 @@ function register_auth($username, $password, $email) {
             $sql_cmd_user_infos->close();
 
             // return true;
-//            session_announce("Account created successfully", true, "index.php");
-            header("Location: ./../login/");
+            session_announce("Account created successfully", true, "index.php");
         } else {
-            header("Location: ./../login/register.php");
-//            session_announce("Account creation failed", true, "register.php");
+            session_announce("Account creation failed", true, "register.php");
             // return false;
         }
     } catch (Exception $e) {
         error_log($e->getMessage());
-        echo $e->getMessage();
 
         // Debugginge purposes
-//        session_announce($e ->getMessage(), true,"register.php");
+        session_announce($e ->getMessage(), true,"register.php");
         // return false;
     } finally {
         if (isset($sql_cmd)) {
@@ -156,24 +153,20 @@ function login_auth($username, $password) {
                 // }
             
                 // If admin or guest but for default it should be admin only
-//                session_announce("", true, "./../admin/");
-                header("Location: ./../admin/");
+                session_announce("", true, "./../admin/");
                 // return true;
             } else {
                 // Invalid password
-//                session_announce("Invalid Username or Password", true, "index.php");
-                header("Location: ./../login/");
+                session_announce("Invalid Username or Password", true, "index.php");
                 return false;
             }
         } else {
             // Username not found
-//            session_announce("Username not found", true, "index.php");
-            header("Location: ./../login/");
-             return false;
+            session_announce("Username not found", true, "index.php");
+            // return false;
         }
     } catch (Exception $e) {
         error_log($e->getMessage());
-        echo $e->getMessage();
         $_SESSION['msg_account_announce'] = "An error occurred. Please try again.";
         return false;
     } finally {

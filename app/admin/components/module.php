@@ -327,8 +327,7 @@ function form_user_edit() {
         $uname = htmlspecialchars($row['username']);
         $is_active = htmlspecialchars($row['is_active']);
         $role = htmlspecialchars($row['user_role']);
-        // $email = htmlspecialchars($email ?? '', ENT_QUOTES, 'UTF-8');		
-        $email = htmlspecialchars($email);						// Incompatible for developing with linux
+        $email = htmlspecialchars($email);
       } else {
         session_announce("User ID not found.", TRUE, "./user_management.php");
         header("Location: user_management.php");

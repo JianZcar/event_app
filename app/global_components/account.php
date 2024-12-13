@@ -1,5 +1,4 @@
 <?php
-ob_start();
 include_once "./../../proj_info.php";
 
 function check_user_exist($user_id) {
@@ -38,46 +37,39 @@ function user_lists($is_command_only) {
 }
 
 function user_type_status($role_id) {
-
-
-	
 }
 
 function get_user_email($user_id) {
-	/**
-	 * Get the email of a user.
-	 *
-	 * @param int $user_id User ID
-	 * @return string Email address
-	 */
-	global $db_conn;
-	$sql_cmd = "SELECT 
-					email
-				FROM
-					user_infos
-				WHERE
-					id = ?";
-	$stmt = $db_conn->prepare($sql_cmd);
-	$stmt->bind_param("i", $user_id);
-	$stmt->execute();
-	$result = $stmt->get_result();
-	$row = $result->fetch_assoc();
-	return $row['email'];
+  /**
+   * Get the email of a user.
+   *
+   * @param int $user_id User ID
+   * @return string|null Email address or null if not found
+   */
+  global $db_conn;
+  $sql_cmd = "SELECT email FROM user_infos WHERE id = ?";
+  $stmt = $db_conn->prepare($sql_cmd);
+  $stmt->bind_param("i", $user_id);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  $row = $result->fetch_assoc();
+  return $row ? $row['email'] : null;
 }
+
 function session_auth_daemon(): void {
-	/**
-	 * Starts a session and checks if the user is logged in.
-	 */
-	if (!isset($_SESSION['user_id'])) {
-		session_announce("You need to login first", true, "/app/login/");
-	} else {
-		// Check role
-		if ($_SESSION['user_role'] != 1) {
-			session_announce("You are not authorized to access this page", true, "/app/login/");
-			session_unset();
-			session_destroy();
-		}
-	}
+  /**
+   * Starts a session and checks if the user is logged in.
+   */
+  if (!isset($_SESSION['user_id'])) {
+    session_announce("You need to login first", true, "/app/login/");
+  } else {
+    // Check role
+    if ($_SESSION['user_role'] != 1) {
+      session_announce("You are not authorized to access this page", true, "/app/login/");
+      session_unset();
+      session_destroy();
+    }
+  }
 }
 
 function change_password($conn, $id, $new_password) {
@@ -118,11 +110,20 @@ function check_username(mysqli $conn, int $id, string $username): bool {
 }
 
 function session_announce(string $msg, bool $goto_require, string $goto_php): void {
-    $_SESSION['msg_account_announce'] = $msg;
-    if ($goto_require) {
-        header("Location: $goto_php");
-        exit();
-    }
+	/**
+	 * Sets a session announcement message and redirects if required.
+	 *
+	 * @param string $msg Announcement message
+	 * @param bool $goto_require_once Whether redirection is required
+	 * @param string $goto_php Redirection page URL
+	 */
+
+	$_SESSION['msg_account_announce'] = $msg;
+
+	if ($goto_require) {
+		header("Location: $goto_php");
+		exit();
+	}
 }
 
 function password_encoder(string $password): string {
@@ -148,34 +149,37 @@ function sql_execute(mysqli $conn, string $sql): mysqli_result|false {
 }
 
 function exec_login(mysqli $conn, string $username, string $password): void {
-	/**
-	 * Executes login functionality.
-	 *
-	 * @param mysqli $conn Database connection
-	 * @param string $username Username
-	 * @param string $password Password
-	 */
-	$sql_cmd = "SELECT id, username, passwd, is_active, user_role 
-				FROM users 
-				WHERE username = ?";
+  /**
+   * Executes login functionality.
+   *
+   * @param mysqli $conn Database connection
+   * @param string $username Username
+   * @param string $password Password
+   */
+  $sql_cmd = "SELECT id, username, passwd, is_active, user_role 
+                FROM users 
+                WHERE username = ?";
 
-	$result = sql_execute($conn, $sql_cmd, [$username]);
+  $stmt = $conn->prepare($sql_cmd);
+  $stmt->bind_param("s", $username);
+  $stmt->execute();
+  $result = $stmt->get_result();
+  $row = $result->fetch_assoc();
 
-	if ($result) {
-		$row = $result->fetch_assoc();
-		if (password_verify($password, $row['passwd'])) {
-			$_SESSION['user_id'] = $row['id'];
-			$_SESSION['username'] = $row['username'];
-			$_SESSION['user_role'] = $row['user_role'];
-			$_SESSION['is_active'] = $row['is_active'];
-			header("Location: index.php");
-			exit;
-		} else {
-			session_announce("Invalid credentials.", true, "/");
-		}
-	} else {
-		session_announce("Invalid credentials.", true, "/");
-	}
+  if ($row) {
+    if (password_verify($password, $row['passwd'])) {
+      $_SESSION['user_id'] = $row['id'];
+      $_SESSION['username'] = $row['username'];
+      $_SESSION['user_role'] = $row['user_role'];
+      $_SESSION['is_active'] = $row['is_active'];
+      header("Location: index.php");
+      exit;
+    } else {
+      session_announce("Invalid credentials.", true, "/");
+    }
+  } else {
+    session_announce("Invalid credentials.", true, "/");
+  }
 }
 
 function exec_logout(): void {
@@ -187,6 +191,3 @@ function exec_logout(): void {
 	header("Location: /");
 	// exit;
 }
-
-ob_end_flush();
-?>
