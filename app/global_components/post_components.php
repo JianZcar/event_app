@@ -1,5 +1,7 @@
 
 <?php
+include_once("post_query.php");
+
 function dialog_add_post() {
 ?>
 <div class="p-base flex flex-row justify-between items-center">
@@ -32,6 +34,7 @@ function post_content($start_datetime, $end_datetime, $content) {
     <p>End: <?php echo $end_datetime ?></p>
     <br>
     <p><?php echo $content ?></p>
+<!--    <p>No. of attachments: --><?php //attachment_cou nt($_GET['id'])?><!--</p>-->
 </div>
 <br>
 <?php

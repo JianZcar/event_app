@@ -1,6 +1,23 @@
 <?php
 include_once "pagination.php";
 
+function attachment_count($post_id) {
+  global $db_conn;
+
+  $sql_cmd = "SELECT COUNT(*) as count FROM event_post_attachments WHERE post_id = ?";
+  $sql_query = $db_conn->prepare($sql_cmd);
+  $sql_query->bind_param("i", $post_id);
+  $sql_query->execute();
+  $result = $sql_query->get_result();
+
+  if ($result->num_rows > 0) {
+    $row = $result->fetch_assoc();
+    return $row['count'];
+  } else {
+    return 0;
+  }
+}
+
 function posts_check() {
     /**
      * Check if the post ID is set on the address bar,
@@ -32,6 +49,7 @@ function post_lists($conn, $user_id, $toggle_pagination=true, $page=1, $limit=5)
      * @param int $limit
      * @return array
      */
+
     $sql_posts = "SELECT subject_name, id, content, start_datetime, end_datetime FROM event_posts";
     if ($toggle_pagination) {
         $result_posts = paginate($conn, $sql_posts, $page, $limit);
